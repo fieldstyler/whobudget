@@ -1,0 +1,93 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/fieldstyler/side_projects/whobudget/spec/models/expense_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          null,
+          null,
+          1,
+          2,
+          null,
+          null
+        ]
+      },
+      "/Users/fieldstyler/side_projects/whobudget/app/models/expense.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/fieldstyler/side_projects/whobudget/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/fieldstyler/side_projects/whobudget/spec/models/goal_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          2,
+          2,
+          null,
+          null,
+          1,
+          2,
+          null,
+          null
+        ]
+      },
+      "/Users/fieldstyler/side_projects/whobudget/app/models/goal.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/fieldstyler/side_projects/whobudget/spec/models/savings_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          2,
+          null,
+          null,
+          1,
+          2,
+          2,
+          null,
+          null
+        ]
+      },
+      "/Users/fieldstyler/side_projects/whobudget/app/models/savings.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      }
+    },
+    "timestamp": 1626982383
+  }
+}
