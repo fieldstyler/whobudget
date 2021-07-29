@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+<link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
+<style>
+body {
+    font-family: 'Bangers'; font-size: 40px;
+}
+</style>
+</head>
+<body>
+<div class="w3-container w3-orange">
+  <h1 style="color:orange;text-align: center">whobudget</h1>
+</div>
+
+<div class="w3-container w3-orange">
+  <p> <%= button_to 'Add Savings', "/savings/new", method: :get %> </p>
+</div>
+
+<div class="w3-container w3-orange">
+  <% if @savings == nil %>
+    <h1 style="color:orange;text-align: left">No Current Savings</h1>
+  <% else %>
+    <h1 style="color:orange;text-align: left">Current Savings:</h1>
+    <h1 style="color:green;text-align: left">$<%= @savings.amount %></h1>
+  <% end %>
+</div>
+
+</body>
+</html>
+
+
+
+<!-- <h1 class='w3-display-middle' style='font-family:bangers'>WHOBUDGET</h1> -->
