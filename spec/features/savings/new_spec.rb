@@ -18,5 +18,7 @@ RSpec.describe "Savings Create Page" do
 
     expect(current_path).to eq(root_path)
     expect(page).to have_content(amount)
+    expect(page).to have_button("Edit Savings")
+    expect(page).to_not have_button("Create Savings")
   end
 end
