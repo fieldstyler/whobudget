@@ -8,23 +8,76 @@
 body {
     font-family: 'Bangers'; font-size: 40px;
 }
+
+header {
+  color:white; text-align:center; background-color:orange
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: orange;
+}
+
+.flex-container .box {
+  display: flex;
+  flex-direction: column;
+  color: green;
+  background-color: gold;
+  width: 400px;
+  margin: 10px;
+  text-align: center;
+  line-height: 15px;
+  font-size: 55px;
+}
+
+.flex-container .box2 {
+  display: flex;
+  flex-direction: column;
+  background-color: purple;
+  color: red;
+  width: 400px;
+  margin: 10px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 40px;
+}
+
+.button {
+  background-color: green;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
 </style>
 </head>
 <body>
-<div class="w3-container w3-orange">
-  <h1 style="color:orange;text-align: center">whobudget</h1>
-</div>
+<header>
+  <h1>whobudget</h1>
+</header>
 
-<div class="w3-container w3-orange">
-  <p> <%= button_to 'Add Savings', "/savings/new", method: :get %> </p>
-</div>
 
-<div class="w3-container w3-orange">
+<div class="flex-container">
   <% if @savings == nil %>
-    <h1 style="color:orange;text-align: left">No Current Savings</h1>
+    <h1 class="box">No Current Savings</h1>
+    <p> <%= button_to 'Add Savings', "/savings/new", method: :get %> </p>
   <% else %>
-    <h1 style="color:orange;text-align: left">Current Savings:</h1>
-    <h1 style="color:green;text-align: left">$<%= @savings.amount %></h1>
+    <h1 class="box">
+      <p>Current Savings:</p>
+      <p>$<%= @savings.amount %></p>
+      <button class="button"><%= button_to 'Edit Savings', "/savings/edit", method: :get %></button>
+    </h1>
+    <h2 class="box2">
+      <p>Hope this does something</p>
+      <p>Hope this does something again</p>
+    </h2>
+    <h2 class="box2">Hope this does something else</h2>
   <% end %>
 </div>
 
