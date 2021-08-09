@@ -12,11 +12,19 @@ RSpec.describe "Welcome Page" do
   end
 
   it 'displays the amount of money currently in savings' do
-
+    savings = Savings.create(amount: 23456.78)
+    visit root_path
+    expect(page).to have_content("Current Savings")
+    expect(page).to have_content("$23,456.78")
   end
 
   it 'has a button to edit savings amount' do
-
+    visit root_path
+    savings = Savings.create(amount: 4444.42)
+    click_on("Add Savings")
+    fill_in "Amount", with: savings.amount
+    click_on("Create Savings")
+    expect(page).to have_button("Edit Savings")
   end
 
   it 'has a list of all goals' do
@@ -36,11 +44,13 @@ RSpec.describe "Welcome Page" do
   end
 
   it 'has a button to view expense report' do
-
+    visit root_path
+    expect(page).to have_button("Expense Report")
   end
 
   it 'has a button to add expense' do
-
+    visit root_path
+    expect(page).to have_button("Add Expense")
   end
 
   it 'takes you to a create savings page when you click the add savings button' do

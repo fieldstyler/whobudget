@@ -1,0 +1,11 @@
+<h1>Your Expense Report</h1>
+
+<h2>Recent Expenses</h2>
+<ul>
+  <% @expenses.each do |exp| %>
+    <li><%= exp.date.month %>/<%= exp.date.day %> - <%= exp.title %>: <%= number_to_currency(exp.cost) %></li>
+    <br>
+  <% end %>
+</ul>
+
+<p><%= button_to 'Add Expense', '/expense/new', method: :get %></p>

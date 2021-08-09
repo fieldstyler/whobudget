@@ -17,7 +17,7 @@ RSpec.describe "Savings Create Page" do
     click_on("Create Savings")
 
     expect(current_path).to eq(root_path)
-    expect(page).to have_content(amount)
+    expect(page).to have_content("$22,346.18")
     expect(page).to have_button("Edit Savings")
     expect(page).to_not have_button("Create Savings")
   end
