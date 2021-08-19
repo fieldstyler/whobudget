@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_22_183354) do
+ActiveRecord::Schema.define(version: 2021_08_10_183407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2021_07_22_183354) do
 
   create_table "savings", force: :cascade do |t|
     t.float "amount"
+    t.text "monthly_savings"
   end
 
   add_foreign_key "expenses", "savings", column: "savings_id"

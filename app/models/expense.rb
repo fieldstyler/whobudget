@@ -4,4 +4,11 @@ class Expense < ApplicationRecord
   validates_presence_of :date
   validates_presence_of :category
   belongs_to :savings
+
+  def month_year
+    array = []
+    array << date.month
+    array << date.year
+    return array
+  end
 end

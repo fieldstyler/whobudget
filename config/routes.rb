@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   resources :expense, except: [:show]
   get '/expense/index', to: "expense#index"
   post '/expense/create', to: "expense#create"
-  # resources :expense
+  patch '/expense/:id/edit', to: "expense#update"
+  post "/expense/:id/delete", to: "expense#destroy"
+  get "/expense/all/index", to: "expense#all"
 end

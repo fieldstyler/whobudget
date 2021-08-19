@@ -1,0 +1,20 @@
+<h1>Edit Your Expense!</h1>
+<%= form_tag "/expense/#{params[:id]}/edit", method: :patch do %>
+  <%= label_tag :title %>
+  <%= text_field_tag :title, "#{@expense.title}" %>
+  <br>
+  <br>
+  <%= label_tag :cost %>
+  <%= text_field_tag :cost, "#{@expense.cost}" %>
+  <br>
+  <br>
+  <%= label_tag :date %>
+  <%= date_field_tag :date, "#{@expense.date}" %>
+  <br>
+  <br>
+  <%= label_tag :category %>
+  <%= text_field_tag :category, "#{@expense.category}" %>
+  <br>
+  <br>
+  <%= submit_tag 'Edit This Expense' %>
+<% end %>
