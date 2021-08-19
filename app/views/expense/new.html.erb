@@ -1,0 +1,20 @@
+<h1>Add an Expense!</h1>
+<%= form_tag "/expense/create", method: :post do %>
+  <%= label_tag :title %>
+  <%= text_field_tag :title %>
+  <br>
+  <br>
+  <%= label_tag :cost %>
+  <%= text_field_tag :cost %>
+  <br>
+  <br>
+  <%= label_tag :date %>
+  <%= date_field_tag :date %>
+  <br>
+  <br>
+  <%= label_tag :category %>
+  <%= text_field_tag :category %>
+  <br>
+  <br>
+  <%= submit_tag 'Create Expense' %>
+<% end %>

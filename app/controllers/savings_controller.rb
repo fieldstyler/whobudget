@@ -7,6 +7,14 @@ class SavingsController < ApplicationController
     redirect_to '/'
   end
 
+  def edit
+  end
+
+  def update
+    @savings = Savings.update(savings_params)
+    redirect_to '/'
+  end
+
   private
   def savings_params
     params.permit(:amount)

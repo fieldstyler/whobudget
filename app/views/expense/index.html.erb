@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+<link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
+<style>
+body {
+    font-family: 'Bangers'; font-size: 80px; background: deeppink;
+}
+
+header {
+  color:white; text-align:center; text-decoration: underline;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-container .box {
+  display: flex;
+  flex-direction: column;
+  color: green;
+  background-color: goldenrod;
+  width: 500px;
+  margin: 20px;
+  text-align: left;
+  line-height: 20px;
+  font-size: 25px;
+}
+
+.flex-container .box2 {
+  display: flex;
+  flex-direction: column;
+  background-color: aqua;
+  color: purple;
+  width: 400px;
+  margin: 10px;
+  text-align: center;
+  line-height: 45px;
+  font-size: 40px;
+}
+
+.flex-container .box3 {
+  display: flex;
+  flex-direction: column;
+  background-color: blue;
+  color: white;
+  width: 400px;
+  margin: 10px;
+  text-align: center;
+  line-height: 5px;
+  font-size: 40px;
+}
+
+.button {
+  background-color: green;
+  border: none;
+  color: gold;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.button2 {
+  background-color: purple;
+  border: none;
+  color: aqua;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+</style>
+</head>
+<body>
+
+<header><%= Date.today.strftime("%B") %> Expense Report</header>
+
+<div class="flex-container">
+  <h2 class="box">
+    <p style="font-size: 40px; line-height: 0px; text-decoration: underline; text-align: center">Recent Expenses</p>
+  <ul>
+    <% @expenses.each do |exp| %>
+      <section id='expense-<%= exp.id %>'>
+        <% if exp.date.month == Date.today.month %>
+        <li><%= exp.date.month %>/<%= exp.date.day %> - <%= exp.title %>: <%= number_to_currency(exp.cost) %>
+          <button type="button" style="float: right; background-color: red"><%= button_to 'X', "/expense/#{exp.id}/delete", method: :destroy, data: {confirm: "Are you sure you wanna delete #{exp.title}?"} %></button>
+          <button type="button" style="float: right; background-color: lightseagreen"><%= button_to 'Edit', "/expense/#{exp.id}/edit", method: :get %></button></li>
+        <br>
+        <% end %>
+      </section>
+    <% end %>
+  </ul>
+  <button class="button"><%= button_to 'Add Expense', '/expense/new', method: :get %></button>
+  <button class="button"><%= button_to 'View All Expenses', '/expense/all/index', method: :get %></button></h2>
+  <h4 class="box2">
+    <p>Money Spent This Month: <%= number_to_currency(@savings.current_monthly_expenditures) %></p>
+    <p>Money Made This Month: <%= number_to_currency(@savings.current_monthly_income) %></p>
+    <p>Net Money This Month: <%= number_to_currency(@savings.net_current_monthly_income) %></p>
+  </h4>
+</div>

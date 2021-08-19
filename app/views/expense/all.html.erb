@@ -1,0 +1,11 @@
+<header>
+  All Expenses
+</header>
+
+<div class="">
+  <ul>
+    <% @expenses.each do |exp| %>
+      <li><%= exp.date %> - <%= exp.title %>: <%= number_to_currency(exp.cost) %>, category: <%= exp.category %></li>
+    <% end %>
+  </ul>
+</div>
