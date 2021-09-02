@@ -1,20 +1,63 @@
-<h1>Edit Your Expense!</h1>
-<%= form_tag "/expense/#{params[:id]}/edit", method: :patch do %>
-  <%= label_tag :title %>
-  <%= text_field_tag :title, "#{@expense.title}" %>
-  <br>
-  <br>
-  <%= label_tag :cost %>
-  <%= text_field_tag :cost, "#{@expense.cost}" %>
-  <br>
-  <br>
-  <%= label_tag :date %>
-  <%= date_field_tag :date, "#{@expense.date}" %>
-  <br>
-  <br>
-  <%= label_tag :category %>
-  <%= text_field_tag :category, "#{@expense.category}" %>
-  <br>
-  <br>
-  <%= submit_tag 'Edit This Expense' %>
-<% end %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+<link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
+<style>
+
+body {
+    font-family: 'Bangers'; font-size: 40px; background: blueviolet;
+}
+
+header {
+  color:yellow; text-align:center; font-size: 60px
+}
+
+
+</style>
+</head>
+<body style="text-align:center">
+  <header>Edit Your Expense!</header>
+  <div style="font-size: 30px; line-height: 30px; color:goldenrod">
+    <%= form_tag "/expense/#{params[:id]}/edit", method: :patch do %>
+    <%= label_tag :title %>
+    <%= text_field_tag :title, "#{@expense.title}" %>
+    <br>
+    <br>
+    <%= label_tag :cost %>
+    <%= text_field_tag :cost, "#{@expense.cost}" %>
+    <br>
+    <br>
+    <%= label_tag :date %>
+    <%= date_field_tag :date, "#{@expense.date}" %>
+    <br>
+    <br>
+    <%= label_tag :category %>
+    <br>
+    <%= radio_button_tag(:category, "#{@expense.category}", checked=true) %>
+    <%= label_tag "#{@expense.category}" %>
+
+    <%= radio_button_tag(:category, "Income") unless @expense.category == "Income"%>
+    <%= label_tag "Income" unless @expense.category == "Income"%>
+
+    <%= radio_button_tag(:category, "Food") unless @expense.category == "Food"%>
+    <%= label_tag "Food" unless @expense.category == "Food"%>
+
+    <%= radio_button_tag(:category, "Entertainment") unless @expense.category == "Entertainment"%>
+    <%= label_tag "Entertainment" unless @expense.category == "Entertainment"%>
+
+    <%= radio_button_tag(:category, "Housing") unless @expense.category == "Housing"%>
+    <%= label_tag "Housing" unless @expense.category == "Housing"%>
+
+    <%= radio_button_tag(:category, "Car") unless @expense.category == "Car"%>
+    <%= label_tag "Car" unless @expense.category == "Car"%>
+
+    <%= radio_button_tag(:category, "Other") unless @expense.category == "Other"%>
+    <%= label_tag "Other" unless @expense.category == "Other"%>
+    <br>
+    <br>
+    <%= submit_tag 'Edit This Expense' %>
+    <% end %>
+  </div>
+</body >

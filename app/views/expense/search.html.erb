@@ -18,14 +18,18 @@ header {
 </style>
 </head>
 <body style="text-align:center">
-  <header>Edit Your Savings</header>
+  <header>What month shall i break down for you?</header>
   <div style="font-size: 30px; line-height: 30px; color:goldenrod">
-    <%= form_tag "/savings/:id/edit", method: :patch do %>
-      <%= label_tag :amount %>
-      <%= text_field_tag :amount, "#{@savings.amount}" %>
-      <br>
-      <br>
-      <%= submit_tag 'Submit New Savings' %>
+    <%= form_tag "/expense/search/data", method: :post do %>
+    <br>
+    <%= label_tag :month %>
+    <%= select_month(Date.today, use_month_names: %w(January February March April May June July August September October November December)) %>
+    <%= label_tag :year %>
+    <%= select_year(Date.today, start_year: 2017, end_year: 2.years.from_now.year) %>
+    <br>
+    <br>
+    <br>
+    <%= submit_tag 'Find Expense Report' %>
     <% end %>
   </div>
 </body >

@@ -1,20 +1,60 @@
-<h1>Add an Expense!</h1>
-<%= form_tag "/expense/create", method: :post do %>
-  <%= label_tag :title %>
-  <%= text_field_tag :title %>
-  <br>
-  <br>
-  <%= label_tag :cost %>
-  <%= text_field_tag :cost %>
-  <br>
-  <br>
-  <%= label_tag :date %>
-  <%= date_field_tag :date %>
-  <br>
-  <br>
-  <%= label_tag :category %>
-  <%= text_field_tag :category %>
-  <br>
-  <br>
-  <%= submit_tag 'Create Expense' %>
-<% end %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+<link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
+<style>
+
+body {
+    font-family: 'Bangers'; font-size: 40px; background: blueviolet;
+}
+
+header {
+  color:yellow; text-align:center; font-size: 60px
+}
+
+
+</style>
+</head>
+<body style="text-align:center">
+  <header>Add an Expense!</header>
+  <div style="font-size: 30px; line-height: 30px; color:goldenrod">
+    <%= form_tag "/expense/create", method: :post do %>
+    <%= label_tag :title %>
+    <%= text_field_tag :title %>
+    <br>
+    <br>
+    <%= label_tag :cost %>
+    <%= text_field_tag :cost %>
+    <br>
+    <br>
+    <%= label_tag :date %>
+    <%= date_field_tag :date %>
+    <br>
+    <br>
+    <br>
+    <p style="font-size: 40px; color: dodgerblue"><%= label_tag :category %></p>
+    <%= radio_button_tag(:category, "Income") %>
+    <%= label_tag "Income" %>
+    <br>
+    <%= radio_button_tag(:category, "Food") %>
+    <%= label_tag "Food" %>
+    <br>
+    <%= radio_button_tag(:category, "Entertainment") %>
+    <%= label_tag "Entertainment" %>
+    <br>
+    <%= radio_button_tag(:category, "Housing") %>
+    <%= label_tag "Housing" %>
+    <br>
+    <%= radio_button_tag(:category, "Car") %>
+    <%= label_tag "Car" %>
+    <br>
+    <%= radio_button_tag(:category, "Other") %>
+    <%= label_tag "Other" %>
+    <br>
+    <br>
+    <%= submit_tag 'Create Expense' %>
+    <% end %>
+  </div>
+</body >

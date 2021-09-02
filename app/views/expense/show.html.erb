@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+<link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
+<style>
+body {
+    font-family: 'Bangers'; font-size: 40px; background: deeppink;
+}
+
+header {
+  color:white; text-align:center; text-decoration: underline; font-size: 60px;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-container_two {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-container .box {
+  display: flex;
+  flex-direction: column;
+  color: deeppink;
+  background-color: mistyrose;
+  width: 400px;
+  margin: 20px;
+  border: 1px solid black;
+  text-align: center;
+  line-height: 25px;
+  font-size: 25px;
+}
+
+.flex-container_two .box2 {
+  display: flex;
+  flex-direction: column;
+  background-color: aqua;
+  color: purple;
+  width: 400px;
+  margin: 10px;
+  text-align: center;
+  line-height: 45px;
+  font-size: 40px;
+}
+
+.flex-container .box3 {
+  display: flex;
+  flex-direction: column;
+  background-color: blue;
+  color: white;
+  width: 400px;
+  margin: 10px;
+  text-align: center;
+  line-height: 5px;
+  font-size: 40px;
+}
+
+.button {
+  background-color: deeppink;
+  border: none;
+  color: gold;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 28px;
+}
+.button2 {
+  background-color: purple;
+  border: none;
+  color: aqua;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <% if @date.month < 12 && @date.month > 1 %>
+    <div class="">
+      <button class="button" style="line-height: 30px; float: right; position: relative">
+        <form class="button_to" action="/expense/show/<%= @date.month + 1 %>/<%= @date.year %>" method="get">
+          <input type="submit" style="background-color: goldenrod; color: green" value="Next">
+        </form>
+      </button>
+      <button class="button" style="line-height: 30px; float: left; position: relative">
+        <form class="button_to" action="/expense/show/<%= @date.month - 1 %>/<%= @date.year %>" method="get">
+          <input type="submit" style="background-color: goldenrod; color: green" value="Previous">
+        </form>
+      </button>
+    </div>
+  <% elsif @date.month == 12%>
+    <div class="">
+      <button class="button" style="line-height: 30px; float: right; position: relative">
+        <form class="button_to" action="/expense/show/1/<%= @date.year + 1 %>" method="get">
+          <input type="submit" style="background-color: goldenrod; color: green" value="Next">
+        </form>
+      </button>
+      <button class="button" style="line-height: 30px; float: left; position: relative">
+        <form class="button_to" action="/expense/show/<%= @date.month - 1 %>/<%= @date.year %>" method="get">
+          <input type="submit" style="background-color: goldenrod; color: green" value="Previous">
+        </form>
+      </button>
+    </div>
+  <% elsif @date.month == 1 %>
+  <div class="">
+    <button class="button" style="line-height: 30px; float: right; position: relative">
+      <form class="button_to" action="/expense/show/<%= @date.month + 1 %>/<%= @date.year %>" method="get">
+        <input type="submit" style="background-color: goldenrod; color: green" value="Next">
+      </form>
+    </button>
+    <button class="button" style="line-height: 30px; float: left; position: relative">
+      <form class="button_to" action="/expense/show/12/<%= @date.year - 1%>" method="get">
+        <input type="submit" style="background-color: goldenrod; color: green" value="Previous">
+      </form>
+    </button>
+  </div>
+  <% end %>
+  <%= @date.strftime("%B") %> <%= @date.year %> Expense Breakdown
+</header>
+
+<div class="flex-container">
+  <h1 class="box">
+    <p style="text-decoration: underline">Food</p>
+  <% if @food != [] %>
+    <ul>
+      <% @food.each do |food| %>
+        <section id='expense-food'>
+          <% if food.category == "Food" %>
+            <li style="color: firebrick"><%= food.date.month %>/<%= food.date.day %> - <%= food.title %>: <%= number_to_currency(food.cost) %>
+            <br>
+          <% end %>
+        </section>
+      <% end %>
+    </ul>
+  <% else %>
+    <p style="color: dodgerblue">You haven't eaten yet this month!</p>
+  <% end %>
+  <% food_sum = @food.sum do |food| %>
+    <% food.cost %>
+  <% end %>
+  <p style="color: maroon">Total: <%= number_to_currency(food_sum.round(2)) %></p>
+  </h1>
+
+  <h1 class="box">
+    <p style="text-decoration: underline">Entertainment</p>
+    <% if @entertainment != [] %>
+      <ul>
+        <% @entertainment.each do |entertainment| %>
+          <section id='expense-entertainment'>
+            <% if entertainment.category == "Entertainment" %>
+              <li style="color: firebrick"><%= entertainment.date.month %>/<%= entertainment.date.day %> - <%= entertainment.title %>: <%= number_to_currency(entertainment.cost) %>
+              <br>
+            <% end %>
+          </section>
+        <% end %>
+      </ul>
+    <% else %>
+      <p style="color: dodgerblue">You haven't done anything fun this month!</p>
+    <% end %>
+    <% ent_sum = @entertainment.sum do |entertainment| %>
+      <% entertainment.cost %>
+    <% end %>
+    <p style="color: maroon">Total: <%= number_to_currency(ent_sum.round(2)) %></p>
+  </h1>
+
+  <h1 class="box">
+    <p style="text-decoration: underline">Housing</p>
+    <% if @housing != [] %>
+    <ul>
+      <% @housing.each do |housing| %>
+        <section id='expense-housing'>
+          <% if housing.category == "Housing" %>
+            <li style="color: firebrick"><%= housing.date.month %>/<%= housing.date.day %> - <%= housing.title %>: <%= number_to_currency(housing.cost) %>
+            <br>
+          <% end %>
+        </section>
+      <% end %>
+    </ul>
+    <% else %>
+      <p style="color: dodgerblue">Don't forget to pay rent!</p>
+    <% end %>
+    <% house_sum = @housing.sum do |house| %>
+      <% house.cost %>
+    <% end %>
+    <p style="color: maroon">Total: <%= number_to_currency(house_sum.round(2)) %></p>
+
+  <h1 class="box">
+    <p style="text-decoration: underline">Car</p>
+    <% if @car != [] %>
+    <ul>
+      <% @car.each do |car| %>
+        <section id='expense-car'>
+          <% if car.category == "Car" %>
+            <li style="color: firebrick"><%= car.date.month %>/<%= car.date.day %> - <%= car.title %>: <%= number_to_currency(car.cost) %>
+            <br>
+          <% end %>
+        </section>
+      <% end %>
+    </ul>
+    <% else %>
+      <p style="color: dodgerblue">Get out of the house and drive somewhere!</p>
+    <% end %>
+    <% car_sum = @car.sum do |car| %>
+      <% car.cost %>
+    <% end %>
+    <p style="color: maroon">Total: <%= number_to_currency(car_sum.round(2)) %></p>
+
+  <h1 class="box">
+    <p style="text-decoration: underline">Other</p>
+    <% if @other != [] %>
+    <ul>
+      <% @other.each do |other| %>
+        <section id='expense-other'>
+          <% if other.category == "Other" %>
+            <li style="color: firebrick"><%= other.date.month %>/<%= other.date.day %> - <%= other.title %>: <%= number_to_currency(other.cost) %>
+            <br>
+          <% end %>
+        </section>
+      <% end %>
+    </ul>
+    <% else %>
+      <p style="color: dodgerblue">Only the essentials this month, I see...</p>
+    <% end %>
+    <% other_sum = @other.sum do |other| %>
+      <% other.cost %>
+    <% end %>
+    <p style="color: maroon">Total: <%= number_to_currency(other_sum.round(2)) %></p>
+
+  <h1 class="box">
+    <p style="text-decoration: underline">Income</p>
+    <% if @income != [] %>
+    <ul>
+      <% @income.each do |income| %>
+        <section id='expense-income'>
+          <% if income.category == "Income" %>
+            <li style="color: forestgreen"><%= income.date.month %>/<%= income.date.day %> - <%= income.title %>: <%= number_to_currency(income.cost) %>
+            <br>
+          <% end %>
+        </section>
+      <% end %>
+    </ul>
+    <% else %>
+      <p style="color: dodgerblue">Get off your butt and go make us some money!</p>
+    <% end %>
+    <% income_sum = @income.sum do |income| %>
+      <% income.cost %>
+    <% end %>
+    <p style="color: lawngreen">Total: <%= number_to_currency(income_sum.round(2)) %></p>
+</div>
+<% total_expenses = food_sum + ent_sum + car_sum + house_sum + other_sum  %>
+<% net_savings = income_sum - total_expenses %>
+<div class="flex-container_two">
+  <h1 class="box2">
+    <p>Expenses: <%= number_to_currency(total_expenses.round(2)) %></p>
+    <p>Income: <%= number_to_currency(income_sum.round(2)) %></p>
+    <p>Net Savings: <%= number_to_currency(net_savings.round(2)) %></p>
+</div>
