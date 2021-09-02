@@ -8,6 +8,7 @@ class SavingsController < ApplicationController
   end
 
   def edit
+    @savings = Savings.find(params[:id])
   end
 
   def update

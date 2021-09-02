@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   patch '/expense/:id/edit', to: "expense#update"
   post "/expense/:id/delete", to: "expense#destroy"
   get "/expense/all/index", to: "expense#all"
+  get "/expense/search", to: "expense#search"
+  post "/expense/search/data", to: "expense#search_data"
+  get "/expense/show/:month/:year", to: "expense#show"
 end

@@ -9,6 +9,8 @@ RSpec.describe "Savings Create Page" do
   end
 
   it "can create savings item and redirects back to welcome page where savings amount is displayed" do
+    Expense.destroy_all
+    Savings.destroy_all
     amount = 22346.18
 
     visit "/savings/new"

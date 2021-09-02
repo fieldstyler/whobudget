@@ -8,6 +8,18 @@ class ExpenseController < ApplicationController
     @expenses = Expense.all.order("date DESC").first(10)
   end
 
+  def show
+    month = params[:month]
+    year = params[:year]
+    @date = Date.new(year.to_i, month.to_i)
+    @food = Savings.expense_breakdown(month, year, "Food")
+    @entertainment = Savings.expense_breakdown(month, year, "Entertainment")
+    @housing = Savings.expense_breakdown(month, year, "Housing")
+    @car = Savings.expense_breakdown(month, year, "Car")
+    @other = Savings.expense_breakdown(month, year, "Other")
+    @income = Savings.expense_breakdown(month, year, "Income")
+  end
+
   def create
     savings = Savings.first
     @expense = savings.expenses.create(expense_params)
@@ -33,6 +45,15 @@ class ExpenseController < ApplicationController
 
   def all
     @expenses = Expense.all.order("date DESC")
+  end
+
+  def search
+  end
+
+  def search_data
+    month = params[:date][:month]
+    year = params[:date][:year]
+    redirect_to "/expense/show/#{month}/#{year}"
   end
 
   private

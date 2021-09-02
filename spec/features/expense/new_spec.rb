@@ -16,14 +16,13 @@ RSpec.describe "Create Expense Page" do
     title = "Ham Sandwich"
     cost = 2.82
     date = "#{Date.today}"
-    category = "Food"
 
     visit "/expense/new"
 
     fill_in 'Title', with: title
     fill_in 'Cost', with: cost
     fill_in 'Date', with: date
-    fill_in 'Category', with: category
+    choose(option: 'Food')
     click_on("Create Expense")
 
     expect(current_path).to eq("/expense/index")

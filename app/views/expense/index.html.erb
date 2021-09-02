@@ -6,11 +6,11 @@
 <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
 <style>
 body {
-    font-family: 'Bangers'; font-size: 80px; background: deeppink;
+    font-family: 'Bangers'; font-size: 40px; background: deeppink;
 }
 
 header {
-  color:white; text-align:center; text-decoration: underline;
+  color:white; text-align:center; text-decoration: underline; font-size: 60px;
 }
 
 .flex-container {
@@ -64,7 +64,7 @@ header {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 28px;
 }
 .button2 {
   background-color: purple;
@@ -85,7 +85,7 @@ header {
 
 <div class="flex-container">
   <h2 class="box">
-    <p style="font-size: 40px; line-height: 0px; text-decoration: underline; text-align: center">Recent Expenses</p>
+    <p style="font-size: 40px; line-height: 40px; text-decoration: underline; text-align: center">Recent Expenses</p>
   <ul>
     <% @expenses.each do |exp| %>
       <section id='expense-<%= exp.id %>'>
@@ -98,8 +98,8 @@ header {
       </section>
     <% end %>
   </ul>
-  <button class="button"><%= button_to 'Add Expense', '/expense/new', method: :get %></button>
-  <button class="button"><%= button_to 'View All Expenses', '/expense/all/index', method: :get %></button></h2>
+  <button class="button" style="line-height: 25px"><%= button_to 'Add Expense', '/expense/new', method: :get %></button>
+  <button class="button" style="line-height: 25px"><%= button_to 'View All Expenses', '/expense/all/index', method: :get %></button></h2>
   <h4 class="box2">
     <p>Money Spent This Month: <%= number_to_currency(@savings.current_monthly_expenditures) %></p>
     <p>Money Made This Month: <%= number_to_currency(@savings.current_monthly_income) %></p>

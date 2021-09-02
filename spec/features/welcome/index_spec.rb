@@ -7,11 +7,15 @@ RSpec.describe "Welcome Page" do
   end
 
   it 'has a button to add savings' do
+    Expense.destroy_all
+    Savings.destroy_all
     visit root_path
     expect(page).to have_button("Add Savings")
   end
 
   it 'displays the amount of money currently in savings' do
+    Expense.destroy_all
+    Savings.destroy_all
     savings = Savings.create(amount: 23456.78)
     visit root_path
     expect(page).to have_content("Current Savings")
@@ -19,6 +23,8 @@ RSpec.describe "Welcome Page" do
   end
 
   it 'has a button to edit savings amount' do
+    Expense.destroy_all
+    Savings.destroy_all
     visit root_path
     savings = Savings.create(amount: 4444.42)
     click_on("Add Savings")
@@ -54,6 +60,8 @@ RSpec.describe "Welcome Page" do
   end
 
   it 'takes you to a create savings page when you click the add savings button' do
+    Expense.destroy_all
+    Savings.destroy_all
     visit root_path
     click_on("Add Savings")
     expect(current_path).to eq('/savings/new')
