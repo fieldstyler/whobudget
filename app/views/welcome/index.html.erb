@@ -26,11 +26,11 @@ header {
   flex-direction: column;
   color: green;
   background-color: goldenrod;
-  width: 400px;
+  width: 300px;
   margin: 40px;
   text-align: center;
   line-height: 115px;
-  font-size: 55px;
+  font-size: 45px;
 }
 
 .flex-container .box2 {
@@ -38,7 +38,7 @@ header {
   flex-direction: column;
   background-color: aqua;
   color: purple;
-  width: 400px;
+  width: 350px;
   margin: 10px;
   text-align: center;
   line-height: 55px;
@@ -53,8 +53,8 @@ header {
   width: 400px;
   margin: 10px;
   text-align: center;
-  line-height: 95px;
-  font-size: 40px;
+  line-height: 35px;
+  font-size: 35px;
 }
 
 .button {
@@ -77,6 +77,16 @@ header {
   display: inline-block;
   font-size: 30px;
 }
+.button3 {
+  background-color: white;
+  border: none;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 28px;
+}
 
 </style>
 </head>
@@ -94,7 +104,7 @@ header {
   <% else %>
     <h1 class="box">
       <p>Current Savings:</p>
-      <p style="font-size: 80px"><%= number_to_currency(@savings.amount) %></p>
+      <p style="font-size: 60px"><%= number_to_currency(@savings.amount) %></p>
       <button class="button" style="line-height: 30px">
         <form class="button_to" action="/savings/<%= @savings.id %>/edit" method="get">
           <input type="submit" style="background-color: goldenrod; color: green" value="Edit Savings">
@@ -113,13 +123,15 @@ header {
     </h2>
   <% end %>
   <h2 class="box3">
-    <p>Goals Here</p>
+    <p>Goals:</p>
+      <% @goals.each do |goal| %>
+      <section id='goal-<%= goal.id %>'>
+        <p style="font-size: 50px"><%= button_to goal.title, "/goal/#{goal.id}/show" %></p>
+      <% end %>
+      </section>
+    <button class="button3" type="button" style="line-height: 25px"><%= button_to 'Add Goal', "/goal/new", method: :get %></button>
   </h2>
 </div>
 
 </body>
 </html>
-
-
-
-<!-- <h1 class='w3-display-middle' style='font-family:bangers'>WHOBUDGET</h1> -->

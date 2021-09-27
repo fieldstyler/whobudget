@@ -33,20 +33,11 @@ RSpec.describe "Welcome Page" do
     expect(page).to have_button("Edit Savings")
   end
 
-  it 'has a list of all goals' do
-
-  end
-
   it 'has a button to add goals' do
-
-  end
-
-  it 'has a button to delete goals next to each goal' do
-
-  end
-
-  it 'successfully deletes goals when you click the delete goal button' do
-
+    Expense.destroy_all
+    Savings.destroy_all
+    visit root_path
+    expect(page).to have_button("Add Goal")
   end
 
   it 'has a button to view expense report' do
@@ -68,6 +59,18 @@ RSpec.describe "Welcome Page" do
   end
 
   it 'takes you to a create goal page when you click the add goal button' do
+    visit root_path
+    click_on("Add Goal")
+    expect(current_path).to eq("/goal/new")
+  end
 
+  it 'takes you to goal show page when you click on the specific goal button' do
+    Expense.destroy_all
+    Savings.destroy_all
+    savings = Savings.create(amount: 25000)
+    hmoon = savings.goals.create(title: "Honeymoon", cost: 4000)
+    visit root_path
+    click_on "Honeymoon"
+    expect(current_path).to eq("/goal/#{hmoon.id}/show")
   end
 end

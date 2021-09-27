@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_10_183407) do
+ActiveRecord::Schema.define(version: 2021_09_24_221337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2021_08_10_183407) do
     t.string "title"
     t.float "cost"
     t.bigint "savings_id"
+    t.float "funds", default: 0.0
     t.index ["savings_id"], name: "index_goals_on_savings_id"
   end
 

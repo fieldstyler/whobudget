@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
+<style>
+body {
+    font-family: 'Bangers'; font-size: 40px; background: deeppink;
+}
+
+header {
+  color:white; text-align:center; text-decoration: underline; font-size: 60px;
+}
+
+.flex-container {
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 50px;
+}
+
+.flex-container_two {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-container .box {
+  display: flex;
+  flex-direction: column;
+  color: deeppink;
+  background-color: mistyrose;
+  width: 400px;
+  margin: 20px;
+  border: 1px solid black;
+  text-align: center;
+  line-height: 25px;
+  font-size: 25px;
+  transform: rotate(-90deg);
+}
+
+.flex-container_two .box2 {
+  display: flex;
+  flex-direction: column;
+  background-color: aqua;
+  color: purple;
+  width: 400px;
+  margin: 10px;
+  text-align: center;
+  line-height: 45px;
+  font-size: 40px;
+}
+
+.flex-container .box3 {
+  display: flex;
+  flex-direction: column;
+  background-color: blue;
+  color: white;
+  width: 400px;
+  margin: 10px;
+  text-align: center;
+  line-height: 5px;
+  font-size: 40px;
+}
+
+.button {
+  background-color: deeppink;
+  border: none;
+  color: gold;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 28px;
+}
+.button2 {
+  background-color: purple;
+  border: none;
+  color: aqua;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <%= @goal.title %>
+</header>
+
+<div class="flex-container">
+    <div class="w3-light-grey w3-round">
+      <div class="w3-container w3-round w3-green" style="width:<%= @percentage %>%; text-align: center"> <%= number_to_currency(@goal.funds) %> / <%= number_to_currency(@goal.cost) %></div>
+    </div>
+</div>
+
+<body style="text-align:center">
+  <div style="color: white">Add to your goal!</div>
+  <div style="font-size: 30px; line-height: 30px; color:white">
+    <%= form_tag "/goal/#{@goal.id}/add", method: :post do %>
+    <%= label_tag :amount_to_add %>
+    <%= text_field_tag :amount_to_add %>
+    <br>
+    <br>
+    <%= submit_tag 'Add Funds' %>
+    <% end %>
+  </div>
+</body >
+
+<div class="flex-container">
+  <p style="text-align: center; font-size: 50px; color: palegreen">Current Savings: <%= number_to_currency(@savings.amount) %></p>
+</div>
