@@ -6,11 +6,11 @@
 <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
 <style>
 body {
-    font-family: 'Bangers'; font-size: 40px; background: blue;
+    font-family: 'Bangers'; font-size: 40px; background: #9966ff;
 }
 
 header {
-  color:white; text-align:center; text-decoration: underline; font-size: 60px;
+  color:#ff9933; text-align:center; text-decoration: underline; font-size: 60px;
 }
 
 .flex-container {
@@ -23,8 +23,8 @@ header {
 .flex-container .box {
   display: flex;
   flex-direction: column;
-  color: blue;
-  background-color: white;
+  color: #ff9933;
+  background-color: #734cd9;
   width: 300px;
   margin: 20px;
   text-align: left;
@@ -57,7 +57,7 @@ header {
 }
 
 .button {
-  background-color: blue;
+  background-color: #9966ff;
   border: none;
   color: gold;
   padding: 15px 32px;
@@ -90,12 +90,16 @@ header {
           <br>
           <p style="text-align: center"><%= number_to_currency(goal.funds) %> / <%= number_to_currency(goal.cost) %></p>
           <br>
-          <button type="button" style="float: center; background-color: lightseagreen"><%= button_to 'Edit Goal', "/goal/#{goal.id}/edit", method: :get %></button>
-          <button type="button" style="float: center; background-color: red"><%= button_to 'Delete Goal', "/goal/#{goal.id}/delete", method: :destroy, data: {confirm: "Are you sure you wanna delete #{goal.title}?"} %></button>
-          <button type="button" style="float: center; background-color: lime"><%= button_to 'Add Funds', "/goal/#{goal.id}/show", method: :get %></button>
+          <button type="button" style="float: center; background-color: #ff6600"><%= button_to 'Edit Goal', "/goal/#{goal.id}/edit", method: :get %></button>
+          <button type="button" style="float: center; background-color: #ffab73"><%= button_to 'Delete Goal', "/goal/#{goal.id}/delete", method: :destroy, data: {confirm: "Are you sure you wanna delete #{goal.title}?"} %></button>
+          <button type="button" style="float: center; background-color: #abba38"><%= button_to 'Add Funds', "/goal/#{goal.id}/show", method: :get %></button>
       </section>
     <% end %>
   <h4 class="box2">
-    <button class="button" style="line-height: 40px; text-align: center"><%= button_to 'Add Goal', '/goal/new', method: :get %></button>
+    <button class="button" style="line-height: 45px">
+      <form class="button_to" action="/goal/new" method="get">
+        <input type="submit" style="background-color: #ff9933; color: #9966ff" value="Add Goal">
+      </form>
+    </button>
   </h4>
 </div>

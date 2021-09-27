@@ -7,7 +7,7 @@
 <style>
 
 body {
-    font-family: 'Bangers'; font-size: 40px; background: blueviolet;
+    font-family: 'Bangers'; font-size: 40px; background: #9966ff;
 }
 
 header {
@@ -19,7 +19,7 @@ header {
 </head>
 <body style="text-align:center">
   <header>Edit Your Savings</header>
-  <div style="font-size: 30px; line-height: 30px; color:goldenrod">
+  <div style="font-size: 30px; line-height: 30px; color:yellow">
     <%= form_tag "/savings/:id/edit", method: :patch do %>
       <%= label_tag :amount %>
       <%= text_field_tag :amount, "#{@savings.amount}" %>

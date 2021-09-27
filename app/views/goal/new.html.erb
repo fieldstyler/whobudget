@@ -7,11 +7,11 @@
 <style>
 
 body {
-    font-family: 'Bangers'; font-size: 40px; background: blueviolet;
+    font-family: 'Bangers'; font-size: 40px; background: #9966ff;
 }
 
 header {
-  color:pink; text-align:center; font-size: 60px
+  color:#ff9933; text-align:center; font-size: 60px
 }
 
 
@@ -19,7 +19,7 @@ header {
 </head>
 <body style="text-align:center">
   <header>Add a Goal!</header>
-  <div style="font-size: 30px; line-height: 30px; color:white">
+  <div style="font-size: 30px; line-height: 30px; color:#ff9933">
     <%= form_tag "/goal/create", method: :post do %>
     <%= label_tag :title %>
     <%= text_field_tag :title %>

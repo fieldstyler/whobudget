@@ -7,11 +7,11 @@
 <style>
 
 body {
-    font-family: 'Bangers'; font-size: 40px; background: blueviolet;
+    font-family: 'Bangers'; font-size: 40px; background: #9966ff;
 }
 
 header {
-  color:yellow; text-align:center; font-size: 60px
+  color:#66FF99; text-align:center; font-size: 60px
 }
 
 
@@ -19,7 +19,7 @@ header {
 </head>
 <body style="text-align:center">
   <header>Add an Expense!</header>
-  <div style="font-size: 30px; line-height: 30px; color:goldenrod">
+  <div style="font-size: 30px; line-height: 30px; color:#66FF99">
     <%= form_tag "/expense/create", method: :post do %>
     <%= label_tag :title %>
     <%= text_field_tag :title %>
@@ -34,7 +34,7 @@ header {
     <br>
     <br>
     <br>
-    <p style="font-size: 40px; color: dodgerblue"><%= label_tag :category %></p>
+    <p style="font-size: 40px; color: #0f5294"><%= label_tag :category %></p>
     <%= radio_button_tag(:category, "Income") %>
     <%= label_tag "Income" %>
     <br>
