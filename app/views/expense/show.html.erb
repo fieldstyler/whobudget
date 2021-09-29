@@ -10,7 +10,7 @@ body {
 }
 
 header {
-  color:#0f5294; text-align:center; text-decoration: underline; font-size: 60px;
+  color:#66FF99; text-align:center; text-decoration: underline; font-size: 60px;
 }
 
 .flex-container {
@@ -143,7 +143,7 @@ header {
       <% @food.each do |food| %>
         <section id='expense-food'>
           <% if food.category == "Food" %>
-            <li style="color: firebrick"><%= food.date.month %>/<%= food.date.day %> - <%= food.title %>: <%= number_to_currency(food.cost) %>
+            <li style="color: red"><%= food.date.month %>/<%= food.date.day %> - <%= food.title %>: <%= number_to_currency(food.cost) %>
             <br>
           <% end %>
         </section>
@@ -165,7 +165,7 @@ header {
         <% @entertainment.each do |entertainment| %>
           <section id='expense-entertainment'>
             <% if entertainment.category == "Entertainment" %>
-              <li style="color: firebrick"><%= entertainment.date.month %>/<%= entertainment.date.day %> - <%= entertainment.title %>: <%= number_to_currency(entertainment.cost) %>
+              <li style="color: red"><%= entertainment.date.month %>/<%= entertainment.date.day %> - <%= entertainment.title %>: <%= number_to_currency(entertainment.cost) %>
               <br>
             <% end %>
           </section>
@@ -187,7 +187,7 @@ header {
       <% @housing.each do |housing| %>
         <section id='expense-housing'>
           <% if housing.category == "Housing" %>
-            <li style="color: firebrick"><%= housing.date.month %>/<%= housing.date.day %> - <%= housing.title %>: <%= number_to_currency(housing.cost) %>
+            <li style="color: red"><%= housing.date.month %>/<%= housing.date.day %> - <%= housing.title %>: <%= number_to_currency(housing.cost) %>
             <br>
           <% end %>
         </section>
@@ -208,7 +208,7 @@ header {
       <% @car.each do |car| %>
         <section id='expense-car'>
           <% if car.category == "Car" %>
-            <li style="color: firebrick"><%= car.date.month %>/<%= car.date.day %> - <%= car.title %>: <%= number_to_currency(car.cost) %>
+            <li style="color: red"><%= car.date.month %>/<%= car.date.day %> - <%= car.title %>: <%= number_to_currency(car.cost) %>
             <br>
           <% end %>
         </section>
@@ -229,7 +229,7 @@ header {
       <% @other.each do |other| %>
         <section id='expense-other'>
           <% if other.category == "Other" %>
-            <li style="color: firebrick"><%= other.date.month %>/<%= other.date.day %> - <%= other.title %>: <%= number_to_currency(other.cost) %>
+            <li style="color: red"><%= other.date.month %>/<%= other.date.day %> - <%= other.title %>: <%= number_to_currency(other.cost) %>
             <br>
           <% end %>
         </section>
@@ -250,7 +250,7 @@ header {
       <% @income.each do |income| %>
         <section id='expense-income'>
           <% if income.category == "Income" %>
-            <li style="color: forestgreen"><%= income.date.month %>/<%= income.date.day %> - <%= income.title %>: <%= number_to_currency(income.cost) %>
+            <li style="color: lightgreen"><%= income.date.month %>/<%= income.date.day %> - <%= income.title %>: <%= number_to_currency(income.cost) %>
             <br>
           <% end %>
         </section>

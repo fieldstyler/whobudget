@@ -8,7 +8,7 @@ RSpec.describe "Goal Index Page" do
     visit "/goal/index"
 
     expect(page).to have_content(hmoon.title)
-    expect(page).to have_content(hmoon.cost)
+    expect(page).to have_content("$4,000.00")
     expect(page).to have_content(speakers.title)
     expect(page).to have_content(speakers.cost)
   end

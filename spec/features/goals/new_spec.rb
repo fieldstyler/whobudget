@@ -23,6 +23,6 @@ RSpec.describe "Create Goal Page" do
 
     expect(current_path).to eq("/goal/index")
     expect(page).to have_content(title)
-    expect(page).to have_content(cost)
+    expect(page).to have_content("$4,000.00")
   end
 end

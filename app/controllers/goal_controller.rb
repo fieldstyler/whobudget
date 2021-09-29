@@ -19,6 +19,9 @@ class GoalController < ApplicationController
   end
 
   def destroy
+    goal = Goal.find(params[:id])
+    savings = Savings.find(goal.savings_id)
+    savings.restore_funds(goal.funds)
     Goal.destroy(params[:id])
     redirect_to '/goal/index'
   end

@@ -28,7 +28,7 @@ RSpec.describe "Goal Edit Page" do
     expect(current_path).to eq("/goal/index")
     expect(page).to have_content("Homneynoon")
     expect(page).to_not have_content("Honeymoon")
-    expect(page).to have_content("3500")
+    expect(page).to have_content("$3,500.00")
     expect(page).to_not have_content("4000")
   end
 end

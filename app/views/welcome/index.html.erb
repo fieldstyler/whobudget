@@ -39,7 +39,7 @@ header {
   flex-direction: column;
   background-color: #734cd9;
   border: 1px solid black;
-  color: #36a096;
+  color: lightgreen;
   width: 350px;
   margin: 10px;
   text-align: center;
@@ -139,7 +139,7 @@ header {
       <section id='goal-<%= goal.id %>'>
         <button class="button2" style="line-height: 35px">
           <form class="button_to" action="/goal/<%= goal.id %>/show" method="get">
-            <input type="submit" style="background-color: #ff9933; color: yellow; font-size: 30px" value="<%= goal.title %>">
+            <input type="submit" style="background-color: #ff9933; color: #8c4099; font-size: 30px" value="<%= goal.title %>">
           </form>
         </button>
       <% end %>

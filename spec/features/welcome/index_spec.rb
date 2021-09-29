@@ -41,11 +41,13 @@ RSpec.describe "Welcome Page" do
   end
 
   it 'has a button to view expense report' do
+    Savings.create(amount: 2000)
     visit root_path
     expect(page).to have_button("Expense Report")
   end
 
   it 'has a button to add expense' do
+    Savings.create(amount: 2000)
     visit root_path
     expect(page).to have_button("Add Expense")
   end
