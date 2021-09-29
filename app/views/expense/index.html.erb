@@ -6,11 +6,11 @@
 <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
 <style>
 body {
-    font-family: 'Bangers'; font-size: 40px; background: deeppink;
+    font-family: 'Bangers'; font-size: 40px; background: #9966ff;
 }
 
 header {
-  color:white; text-align:center; text-decoration: underline; font-size: 60px;
+  color:#66FF99; text-align:center; text-decoration: underline; font-size: 60px;
 }
 
 .flex-container {
@@ -24,7 +24,7 @@ header {
   display: flex;
   flex-direction: column;
   color: green;
-  background-color: goldenrod;
+  background-color: lightgreen;
   width: 500px;
   margin: 20px;
   text-align: left;
@@ -35,8 +35,8 @@ header {
 .flex-container .box2 {
   display: flex;
   flex-direction: column;
-  background-color: aqua;
-  color: purple;
+  background-color: lightgreen;
+  color: #9966ff;
   width: 400px;
   margin: 10px;
   text-align: center;
@@ -57,7 +57,7 @@ header {
 }
 
 .button {
-  background-color: green;
+  background-color: #9966ff;
   border: none;
   color: gold;
   padding: 15px 32px;
@@ -91,15 +91,23 @@ header {
       <section id='expense-<%= exp.id %>'>
         <% if exp.date.month == Date.today.month %>
         <li><%= exp.date.month %>/<%= exp.date.day %> - <%= exp.title %>: <%= number_to_currency(exp.cost) %>
-          <button type="button" style="float: right; background-color: red"><%= button_to 'X', "/expense/#{exp.id}/delete", method: :destroy, data: {confirm: "Are you sure you wanna delete #{exp.title}?"} %></button>
+          <button type="button" style="float: right; background-color: #336600"><%= button_to 'X', "/expense/#{exp.id}/delete", method: :destroy, data: {confirm: "Are you sure you wanna delete #{exp.title}?"} %></button>
           <button type="button" style="float: right; background-color: lightseagreen"><%= button_to 'Edit', "/expense/#{exp.id}/edit", method: :get %></button></li>
         <br>
         <% end %>
       </section>
     <% end %>
   </ul>
-  <button class="button" style="line-height: 25px"><%= button_to 'Add Expense', '/expense/new', method: :get %></button>
-  <button class="button" style="line-height: 25px"><%= button_to 'View All Expenses', '/expense/all/index', method: :get %></button></h2>
+  <button class="button" style="line-height: 25px">
+    <form class="button_to" action="/expense/new" method="get">
+      <input type="submit" style="background-color: lightgreen; color: green" value="Add Expense">
+    </form>
+  </button>
+  <button class="button" style="line-height: 25px">
+    <form class="button_to" action="/expense/all/index" method="get">
+      <input type="submit" style="background-color: #9966ff; color: #66FF99" value="View All Expenses">
+    </form>
+  </button>
   <h4 class="box2">
     <p>Money Spent This Month: <%= number_to_currency(@savings.current_monthly_expenditures) %></p>
     <p>Money Made This Month: <%= number_to_currency(@savings.current_monthly_income) %></p>

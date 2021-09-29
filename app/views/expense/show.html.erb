@@ -6,11 +6,11 @@
 <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
 <style>
 body {
-    font-family: 'Bangers'; font-size: 40px; background: deeppink;
+    font-family: 'Bangers'; font-size: 40px; background: #9966ff;
 }
 
 header {
-  color:white; text-align:center; text-decoration: underline; font-size: 60px;
+  color:#66FF99; text-align:center; text-decoration: underline; font-size: 60px;
 }
 
 .flex-container {
@@ -32,8 +32,8 @@ header {
 .flex-container .box {
   display: flex;
   flex-direction: column;
-  color: deeppink;
-  background-color: mistyrose;
+  color: #66FF99;
+  background-color: #734cd9;
   width: 400px;
   margin: 20px;
   border: 1px solid black;
@@ -45,8 +45,8 @@ header {
 .flex-container_two .box2 {
   display: flex;
   flex-direction: column;
-  background-color: aqua;
-  color: purple;
+  background-color: #0f5294;
+  color: #66FF99;
   width: 400px;
   margin: 10px;
   text-align: center;
@@ -67,7 +67,7 @@ header {
 }
 
 .button {
-  background-color: deeppink;
+  background-color: #9966ff;
   border: none;
   color: gold;
   padding: 15px 32px;
@@ -96,12 +96,12 @@ header {
     <div class="">
       <button class="button" style="line-height: 30px; float: right; position: relative">
         <form class="button_to" action="/expense/show/<%= @date.month + 1 %>/<%= @date.year %>" method="get">
-          <input type="submit" style="background-color: goldenrod; color: green" value="Next">
+          <input type="submit" style="background-color: #0f5294; color: #66FF99" value="Next">
         </form>
       </button>
       <button class="button" style="line-height: 30px; float: left; position: relative">
         <form class="button_to" action="/expense/show/<%= @date.month - 1 %>/<%= @date.year %>" method="get">
-          <input type="submit" style="background-color: goldenrod; color: green" value="Previous">
+          <input type="submit" style="background-color: #0f5294; color: #66FF99" value="Previous">
         </form>
       </button>
     </div>
@@ -109,12 +109,12 @@ header {
     <div class="">
       <button class="button" style="line-height: 30px; float: right; position: relative">
         <form class="button_to" action="/expense/show/1/<%= @date.year + 1 %>" method="get">
-          <input type="submit" style="background-color: goldenrod; color: green" value="Next">
+          <input type="submit" style="background-color: #0f5294; color: #66FF99" value="Next">
         </form>
       </button>
       <button class="button" style="line-height: 30px; float: left; position: relative">
         <form class="button_to" action="/expense/show/<%= @date.month - 1 %>/<%= @date.year %>" method="get">
-          <input type="submit" style="background-color: goldenrod; color: green" value="Previous">
+          <input type="submit" style="background-color: #0f5294; color: #66FF99" value="Previous">
         </form>
       </button>
     </div>
@@ -122,12 +122,12 @@ header {
   <div class="">
     <button class="button" style="line-height: 30px; float: right; position: relative">
       <form class="button_to" action="/expense/show/<%= @date.month + 1 %>/<%= @date.year %>" method="get">
-        <input type="submit" style="background-color: goldenrod; color: green" value="Next">
+        <input type="submit" style="background-color: #0f5294; color: #66FF99" value="Next">
       </form>
     </button>
     <button class="button" style="line-height: 30px; float: left; position: relative">
       <form class="button_to" action="/expense/show/12/<%= @date.year - 1%>" method="get">
-        <input type="submit" style="background-color: goldenrod; color: green" value="Previous">
+        <input type="submit" style="background-color: #0f5294; color: #66FF99" value="Previous">
       </form>
     </button>
   </div>
@@ -143,7 +143,7 @@ header {
       <% @food.each do |food| %>
         <section id='expense-food'>
           <% if food.category == "Food" %>
-            <li style="color: firebrick"><%= food.date.month %>/<%= food.date.day %> - <%= food.title %>: <%= number_to_currency(food.cost) %>
+            <li style="color: red"><%= food.date.month %>/<%= food.date.day %> - <%= food.title %>: <%= number_to_currency(food.cost) %>
             <br>
           <% end %>
         </section>
@@ -165,7 +165,7 @@ header {
         <% @entertainment.each do |entertainment| %>
           <section id='expense-entertainment'>
             <% if entertainment.category == "Entertainment" %>
-              <li style="color: firebrick"><%= entertainment.date.month %>/<%= entertainment.date.day %> - <%= entertainment.title %>: <%= number_to_currency(entertainment.cost) %>
+              <li style="color: red"><%= entertainment.date.month %>/<%= entertainment.date.day %> - <%= entertainment.title %>: <%= number_to_currency(entertainment.cost) %>
               <br>
             <% end %>
           </section>
@@ -187,7 +187,7 @@ header {
       <% @housing.each do |housing| %>
         <section id='expense-housing'>
           <% if housing.category == "Housing" %>
-            <li style="color: firebrick"><%= housing.date.month %>/<%= housing.date.day %> - <%= housing.title %>: <%= number_to_currency(housing.cost) %>
+            <li style="color: red"><%= housing.date.month %>/<%= housing.date.day %> - <%= housing.title %>: <%= number_to_currency(housing.cost) %>
             <br>
           <% end %>
         </section>
@@ -208,7 +208,7 @@ header {
       <% @car.each do |car| %>
         <section id='expense-car'>
           <% if car.category == "Car" %>
-            <li style="color: firebrick"><%= car.date.month %>/<%= car.date.day %> - <%= car.title %>: <%= number_to_currency(car.cost) %>
+            <li style="color: red"><%= car.date.month %>/<%= car.date.day %> - <%= car.title %>: <%= number_to_currency(car.cost) %>
             <br>
           <% end %>
         </section>
@@ -229,7 +229,7 @@ header {
       <% @other.each do |other| %>
         <section id='expense-other'>
           <% if other.category == "Other" %>
-            <li style="color: firebrick"><%= other.date.month %>/<%= other.date.day %> - <%= other.title %>: <%= number_to_currency(other.cost) %>
+            <li style="color: red"><%= other.date.month %>/<%= other.date.day %> - <%= other.title %>: <%= number_to_currency(other.cost) %>
             <br>
           <% end %>
         </section>
@@ -250,7 +250,7 @@ header {
       <% @income.each do |income| %>
         <section id='expense-income'>
           <% if income.category == "Income" %>
-            <li style="color: forestgreen"><%= income.date.month %>/<%= income.date.day %> - <%= income.title %>: <%= number_to_currency(income.cost) %>
+            <li style="color: lightgreen"><%= income.date.month %>/<%= income.date.day %> - <%= income.title %>: <%= number_to_currency(income.cost) %>
             <br>
           <% end %>
         </section>

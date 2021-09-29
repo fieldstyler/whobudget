@@ -7,7 +7,7 @@
 <style>
 
 body {
-    font-family: 'Bangers'; font-size: 40px; background: blueviolet;
+    font-family: 'Bangers'; font-size: 40px; background: #9966ff;
 }
 
 header {
@@ -24,21 +24,23 @@ header {
 .flex-container .box {
   display: flex;
   flex-direction: column;
-  color: green;
-  background-color: goldenrod;
-  width: 400px;
+  color: yellow;
+  background-color: #734cd9;
+  border: 1px solid black;
+  width: 300px;
   margin: 40px;
   text-align: center;
   line-height: 115px;
-  font-size: 55px;
+  font-size: 45px;
 }
 
 .flex-container .box2 {
   display: flex;
   flex-direction: column;
-  background-color: aqua;
-  color: purple;
-  width: 400px;
+  background-color: #734cd9;
+  border: 1px solid black;
+  color: lightgreen;
+  width: 350px;
   margin: 10px;
   text-align: center;
   line-height: 55px;
@@ -48,19 +50,20 @@ header {
 .flex-container .box3 {
   display: flex;
   flex-direction: column;
-  background-color: blue;
-  color: white;
+  background-color: #734cd9;
+  border: 1px solid black;
+  color: #ff9933;
   width: 400px;
   margin: 10px;
   text-align: center;
-  line-height: 95px;
-  font-size: 40px;
+  line-height: 35px;
+  font-size: 35px;
 }
 
 .button {
-  background-color: green;
+  background-color: #734cd9;
   border: none;
-  color: gold;
+  color: yellow;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -68,7 +71,7 @@ header {
   font-size: 28px;
 }
 .button2 {
-  background-color: purple;
+  background-color: #734cd9;
   border: none;
   color: aqua;
   padding: 15px 32px;
@@ -76,6 +79,16 @@ header {
   text-decoration: none;
   display: inline-block;
   font-size: 30px;
+}
+.button3 {
+  background-color: #734cd9;
+  border: none;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 28px;
 }
 
 </style>
@@ -94,10 +107,10 @@ header {
   <% else %>
     <h1 class="box">
       <p>Current Savings:</p>
-      <p style="font-size: 80px"><%= number_to_currency(@savings.amount) %></p>
+      <p style="font-size: 60px"><%= number_to_currency(@savings.amount) %></p>
       <button class="button" style="line-height: 30px">
         <form class="button_to" action="/savings/<%= @savings.id %>/edit" method="get">
-          <input type="submit" style="background-color: goldenrod; color: green" value="Edit Savings">
+          <input type="submit" style="background-color: yellow; color: #9966ff" value="Edit Savings">
         </form>
       </button>
     </h1>
@@ -106,20 +119,38 @@ header {
     <h2 class="box2">
       <p>Last Month's Savings:</p>
       <p><%= number_to_currency(@savings.last_month_savings) %></p>
-      <p style="color: purple">Last Year's Savings:</p>
-      <p style="color: purple"><%= number_to_currency(@savings.last_year_savings) %></p>
-      <button class="button2" type="button" style="line-height: 25px"><%= button_to 'Expense Report', "/expense/index", method: :get %></button>
-      <button class="button2" type="button" style="line-height: 25px"><%= button_to 'Add Expense', "/expense/new", method: :get %></button>
+      <p style="color: #66FF99">Last Year's Savings:</p>
+      <p style="color: #66FF99"><%= number_to_currency(@savings.last_year_savings) %></p>
+      <button class="button2" style="line-height: 25px">
+        <form class="button_to" action="/expense/index" method="get">
+          <input type="submit" style="background-color: #66FF99; color: #0f5294" value="Expense Report">
+        </form>
+      </button>
+      <button class="button2" style="line-height: 25px">
+        <form class="button_to" action="/expense/new" method="get">
+          <input type="submit" style="background-color: #66FF99; color: #0f5294" value="Add Expense">
+        </form>
+      </button>
     </h2>
   <% end %>
   <h2 class="box3">
-    <p>Goals Here</p>
+    <p>Goals:</p>
+      <% @goals.each do |goal| %>
+      <section id='goal-<%= goal.id %>'>
+        <button class="button2" style="line-height: 35px">
+          <form class="button_to" action="/goal/<%= goal.id %>/show" method="get">
+            <input type="submit" style="background-color: #ff9933; color: #8c4099; font-size: 30px" value="<%= goal.title %>">
+          </form>
+        </button>
+      <% end %>
+      </section>
+    <button class="button3" style="line-height: 25px">
+      <form class="button_to" action="/goal/new" method="get">
+        <input type="submit" style="background-color: #ff9933; color: #9966ff" value="Add Goal">
+      </form>
+    </button>
   </h2>
 </div>
 
 </body>
 </html>
-
-
-
-<!-- <h1 class='w3-display-middle' style='font-family:bangers'>WHOBUDGET</h1> -->

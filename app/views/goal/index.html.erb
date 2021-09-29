@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+<link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
+<style>
+body {
+    font-family: 'Bangers'; font-size: 40px; background: #9966ff;
+}
+
+header {
+  color:#ff9933; text-align:center; text-decoration: underline; font-size: 60px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-container .box {
+  display: flex;
+  flex-direction: column;
+  color: #ff9933;
+  background-color: #734cd9;
+  width: 300px;
+  margin: 20px;
+  text-align: left;
+  line-height: 20px;
+  font-size: 25px;
+}
+
+.flex-container .box2 {
+  display: flex;
+  flex-direction: column;
+  background-color: aqua;
+  color: purple;
+  width: 400px;
+  margin: 10px;
+  text-align: center;
+  line-height: 45px;
+  font-size: 40px;
+}
+
+.flex-container .box3 {
+  display: flex;
+  flex-direction: column;
+  background-color: blue;
+  color: white;
+  width: 400px;
+  margin: 10px;
+  text-align: center;
+  line-height: 5px;
+  font-size: 40px;
+}
+
+.button {
+  background-color: #9966ff;
+  border: none;
+  color: gold;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 28px;
+}
+.button2 {
+  background-color: purple;
+  border: none;
+  color: aqua;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+</style>
+</head>
+<body>
+
+<header>Save it up!</header>
+
+<div class="flex-container">
+    <% @goals.each do |goal| %>
+      <section id='goal-<%= goal.id %>' class="box">
+        <p style="text-align: center; font-size: 50px; line-height: 50px"><%= goal.title %></p>
+          <br>
+          <p style="text-align: center"><%= number_to_currency(goal.funds) %> / <%= number_to_currency(goal.cost) %></p>
+          <br>
+          <button type="button" style="float: center; background-color: #ff6600"><%= button_to 'Edit Goal', "/goal/#{goal.id}/edit", method: :get %></button>
+          <button type="button" style="float: center; background-color: #ffab73"><%= button_to 'Delete Goal', "/goal/#{goal.id}/delete", method: :destroy, data: {confirm: "Are you sure you wanna delete #{goal.title}?"} %></button>
+          <button type="button" style="float: center; background-color: #abba38"><%= button_to 'Add Funds', "/goal/#{goal.id}/show", method: :get %></button>
+      </section>
+    <% end %>
+  <h4 class="box2">
+    <button class="button" style="line-height: 45px">
+      <form class="button_to" action="/goal/new" method="get">
+        <input type="submit" style="background-color: #ff9933; color: #9966ff" value="Add Goal">
+      </form>
+    </button>
+  </h4>
+</div>

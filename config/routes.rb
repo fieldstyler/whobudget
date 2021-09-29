@@ -18,4 +18,13 @@ Rails.application.routes.draw do
   get "/expense/search", to: "expense#search"
   post "/expense/search/data", to: "expense#search_data"
   get "/expense/show/:month/:year", to: "expense#show"
+
+  resources :goal, except: [:show]
+  post '/goal/create', to: "goal#create"
+  get '/goal/index', to: "goal#index"
+  patch '/goal/:id/edit', to: "goal#update"
+  post "/goal/:id/delete", to: "goal#destroy"
+  get "/goal/:id/show", to: "goal#show"
+  post "/goal/:id/show", to: "goal#show"
+  post "/goal/:id/add", to: "goal#add"
 end

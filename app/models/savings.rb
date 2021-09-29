@@ -79,4 +79,9 @@ class Savings < ApplicationRecord
     end_of_month = date.end_of_month
     Expense.where(category: category).where(date: date..end_of_month).order("date DESC")
   end
+
+  def restore_funds(amount)
+    amount = self.amount + amount
+    Savings.find(self.id).update(amount: amount)
+  end
 end

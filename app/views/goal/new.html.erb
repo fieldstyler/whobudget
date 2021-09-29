@@ -11,21 +11,25 @@ body {
 }
 
 header {
-  color:yellow; text-align:center; font-size: 60px
+  color:#ff9933; text-align:center; font-size: 60px
 }
 
 
 </style>
 </head>
 <body style="text-align:center">
-  <header>Edit Your Savings</header>
-  <div style="font-size: 30px; line-height: 30px; color:yellow">
-    <%= form_tag "/savings/:id/edit", method: :patch do %>
-      <%= label_tag :amount %>
-      <%= text_field_tag :amount, "#{@savings.amount}" %>
-      <br>
-      <br>
-      <%= submit_tag 'Submit New Savings' %>
+  <header>Add a Goal!</header>
+  <div style="font-size: 30px; line-height: 30px; color:#ff9933">
+    <%= form_tag "/goal/create", method: :post do %>
+    <%= label_tag :title %>
+    <%= text_field_tag :title %>
+    <br>
+    <br>
+    <%= label_tag :cost %>
+    <%= text_field_tag :cost %>
+    <br>
+    <br>
+    <%= submit_tag 'Add Goal' %>
     <% end %>
   </div>
 </body >

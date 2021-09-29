@@ -7,11 +7,11 @@
 <style>
 
 body {
-    font-family: 'Bangers'; font-size: 40px; background: blueviolet;
+    font-family: 'Bangers'; font-size: 40px; background: #9966ff;
 }
 
 header {
-  color:yellow; text-align:center; font-size: 60px
+  color:lightgreen; text-align:center; font-size: 60px
 }
 
 
@@ -19,7 +19,7 @@ header {
 </head>
 <body style="text-align:center">
   <header>What month shall i break down for you?</header>
-  <div style="font-size: 30px; line-height: 30px; color:goldenrod">
+  <div style="font-size: 30px; line-height: 30px; color:#0f5294">
     <%= form_tag "/expense/search/data", method: :post do %>
     <br>
     <%= label_tag :month %>
