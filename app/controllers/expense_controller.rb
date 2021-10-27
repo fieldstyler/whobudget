@@ -12,11 +12,20 @@ class ExpenseController < ApplicationController
     month = params[:month]
     year = params[:year]
     @date = Date.new(year.to_i, month.to_i)
-    @food = Savings.expense_breakdown(month, year, "Food")
-    @entertainment = Savings.expense_breakdown(month, year, "Entertainment")
+    @groceries = Savings.expense_breakdown(month, year, "Groceries")
+    @eat_out = Savings.expense_breakdown(month, year, "Eat Out")
     @housing = Savings.expense_breakdown(month, year, "Housing")
+    @subscriptions = Savings.expense_breakdown(month, year, "Subscriptions")
+    @loans = Savings.expense_breakdown(month, year, "Loans")
     @car = Savings.expense_breakdown(month, year, "Car")
-    @other = Savings.expense_breakdown(month, year, "Other")
+    @phone = Savings.expense_breakdown(month, year, "Phone")
+    @larry = Savings.expense_breakdown(month, year, "Larry")
+    @entertainment = Savings.expense_breakdown(month, year, "Entertainment")
+    @sports = Savings.expense_breakdown(month, year, "Sports")
+    @health_beaut = Savings.expense_breakdown(month, year, "Health & Beauty")
+    @gifts = Savings.expense_breakdown(month, year, "Gifts")
+    @other_t = Savings.expense_breakdown(month, year, "Other T")
+    @other_h = Savings.expense_breakdown(month, year, "Other H")
     @income = Savings.expense_breakdown(month, year, "Income")
   end
 

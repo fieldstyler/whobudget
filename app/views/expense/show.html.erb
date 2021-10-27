@@ -137,25 +137,179 @@ header {
 
 <div class="flex-container">
   <h1 class="box">
-    <p style="text-decoration: underline">Food</p>
-  <% if @food != [] %>
+    <p style="text-decoration: underline">Groceries</p>
+  <% if @groceries != [] %>
     <ul>
-      <% @food.each do |food| %>
-        <section id='expense-food'>
-          <% if food.category == "Food" %>
-            <li style="color: red"><%= food.date.month %>/<%= food.date.day %> - <%= food.title %>: <%= number_to_currency(food.cost) %>
+      <% @groceries.each do |grocery| %>
+        <section id='expense-grocery'>
+          <% if grocery.category == "Groceries" %>
+            <li style="color: red"><%= grocery.date.month %>/<%= grocery.date.day %> - <%= grocery.title %>: <%= number_to_currency(grocery.cost) %>
             <br>
           <% end %>
         </section>
       <% end %>
     </ul>
   <% else %>
-    <p style="color: dodgerblue">You haven't eaten yet this month!</p>
+    <p style="color: dodgerblue">Get your ass to the grocery store!</p>
   <% end %>
-  <% food_sum = @food.sum do |food| %>
-    <% food.cost %>
+  <% groceries_sum = @groceries.sum do |grocery| %>
+    <% grocery.cost %>
   <% end %>
-  <p style="color: maroon">Total: <%= number_to_currency(food_sum.round(2)) %></p>
+  <p style="color: maroon">Total: <%= number_to_currency(groceries_sum.round(2)) %></p>
+  </h1>
+
+  <h1 class="box">
+    <p style="text-decoration: underline">Eat Out</p>
+  <% if @eat_out != [] %>
+    <ul>
+      <% @eat_out.each do |eat_out| %>
+        <section id='expense-eat_out'>
+          <% if eat_out.category == "Eat Out" %>
+            <li style="color: red"><%= eat_out.date.month %>/<%= eat_out.date.day %> - <%= eat_out.title %>: <%= number_to_currency(eat_out.cost) %>
+            <br>
+          <% end %>
+        </section>
+      <% end %>
+    </ul>
+  <% else %>
+    <p style="color: dodgerblue">Treat yoself once in awhile!</p>
+  <% end %>
+  <% eat_out_sum = @eat_out.sum do |eat_out| %>
+    <% eat_out.cost %>
+  <% end %>
+  <p style="color: maroon">Total: <%= number_to_currency(eat_out_sum.round(2)) %></p>
+  </h1>
+
+  <h1 class="box">
+    <p style="text-decoration: underline">Housing</p>
+    <% if @housing != [] %>
+      <ul>
+        <% @housing.each do |housing| %>
+          <section id='expense-housing'>
+            <% if housing.category == "Housing" %>
+              <li style="color: red"><%= housing.date.month %>/<%= housing.date.day %> - <%= housing.title %>: <%= number_to_currency(housing.cost) %>
+              <br>
+            <% end %>
+          </section>
+        <% end %>
+      </ul>
+    <% else %>
+      <p style="color: dodgerblue">You should pay your mortgage or you'll get evicted!</p>
+    <% end %>
+    <% housing_sum = @housing.sum do |housing| %>
+      <% housing.cost %>
+    <% end %>
+    <p style="color: maroon">Total: <%= number_to_currency(housing_sum.round(2)) %></p>
+  </h1>
+
+  <h1 class="box">
+    <p style="text-decoration: underline">Subscriptions</p>
+    <% if @subscriptions != [] %>
+      <ul>
+        <% @subscriptions.each do |subscription| %>
+          <section id='expense-subscription'>
+            <% if subscription.category == "Subscriptions" %>
+              <li style="color: red"><%= subscription.date.month %>/<%= subscription.date.day %> - <%= subscription.title %>: <%= number_to_currency(subscription.cost) %>
+              <br>
+            <% end %>
+          </section>
+        <% end %>
+      </ul>
+    <% else %>
+      <p style="color: dodgerblue">Pay your bills!</p>
+    <% end %>
+    <% subscriptions_sum = @subscriptions.sum do |subscription| %>
+      <% subscription.cost %>
+    <% end %>
+    <p style="color: maroon">Total: <%= number_to_currency(subscriptions_sum.round(2)) %></p>
+  </h1>
+
+  <h1 class="box">
+    <p style="text-decoration: underline">Loans</p>
+    <% if @loans != [] %>
+    <ul>
+      <% @loans.each do |loan| %>
+      <section id='expense-loan'>
+        <% if loan.category == "Loans" %>
+          <li style="color: red"><%= loan.date.month %>/<%= loan.date.day %> - <%= loan.title %>: <%= number_to_currency(loan.cost) %>
+          <br>
+        <% end %>
+      </section>
+      <% end %>
+    </ul>
+    <% else %>
+      <p style="color: dodgerblue">These aren't optional!</p>
+    <% end %>
+    <% loan_sum = @loans.sum do |loan| %>
+      <% loan.cost %>
+    <% end %>
+    <p style="color: maroon">Total: <%= number_to_currency(loan_sum.round(2)) %></p>
+  </h1>
+
+  <h1 class="box">
+    <p style="text-decoration: underline">Car</p>
+    <% if @car != [] %>
+      <ul>
+      <% @car.each do |car| %>
+      <section id='expense-car'>
+        <% if car.category == "Car" %>
+          <li style="color: red"><%= car.date.month %>/<%= car.date.day %> - <%= car.title %>: <%= number_to_currency(car.cost) %>
+          <br>
+        <% end %>
+      </section>
+      <% end %>
+    </ul>
+    <% else %>
+      <p style="color: dodgerblue">Get out of the house and drive somewhere!</p>
+    <% end %>
+    <% car_sum = @car.sum do |car| %>
+      <% car.cost %>
+    <% end %>
+    <p style="color: maroon">Total: <%= number_to_currency(car_sum.round(2)) %></p>
+  </h1>
+
+  <h1 class="box">
+    <p style="text-decoration: underline">Phone</p>
+    <% if @phone != [] %>
+      <ul>
+      <% @phone.each do |phone| %>
+      <section id='expense-phone'>
+        <% if phone.category == "Phone" %>
+          <li style="color: red"><%= phone.date.month %>/<%= phone.date.day %> - <%= phone.title %>: <%= number_to_currency(phone.cost) %>
+          <br>
+        <% end %>
+      </section>
+      <% end %>
+    </ul>
+    <% else %>
+      <p style="color: dodgerblue">Your phone is already in your hand, pay the bill!</p>
+    <% end %>
+    <% phone_sum = @phone.sum do |phone| %>
+      <% phone.cost %>
+    <% end %>
+    <p style="color: maroon">Total: <%= number_to_currency(phone_sum.round(2)) %></p>
+  </h1>
+
+  <h1 class="box">
+    <p style="text-decoration: underline">Larry</p>
+    <% if @larry != [] %>
+      <ul>
+      <% @larry.each do |larry| %>
+      <section id='expense-larry'>
+        <% if larry.category == "Larry" %>
+          <li style="color: red"><%= larry.date.month %>/<%= larry.date.day %> - <%= larry.title %>: <%= number_to_currency(larry.cost) %>
+          <br>
+        <% end %>
+      </section>
+      <% end %>
+    </ul>
+    <% else %>
+      <p style="color: dodgerblue">Get the boy a little snack or somethin!</p>
+    <% end %>
+    <% larry_sum = @larry.sum do |larry| %>
+      <% larry.cost %>
+    <% end %>
+    <p style="color: maroon">Total: <%= number_to_currency(larry_sum.round(2)) %></p>
   </h1>
 
   <h1 class="box">
@@ -181,55 +335,79 @@ header {
   </h1>
 
   <h1 class="box">
-    <p style="text-decoration: underline">Housing</p>
-    <% if @housing != [] %>
-    <ul>
-      <% @housing.each do |housing| %>
-        <section id='expense-housing'>
-          <% if housing.category == "Housing" %>
-            <li style="color: red"><%= housing.date.month %>/<%= housing.date.day %> - <%= housing.title %>: <%= number_to_currency(housing.cost) %>
-            <br>
-          <% end %>
-        </section>
-      <% end %>
-    </ul>
+    <p style="text-decoration: underline">Sports</p>
+    <% if @sports != [] %>
+      <ul>
+        <% @sports.each do |sports| %>
+          <section id='expense-sports'>
+            <% if sports.category == "Sports" %>
+              <li style="color: red"><%= sports.date.month %>/<%= sports.date.day %> - <%= sports.title %>: <%= number_to_currency(sports.cost) %>
+              <br>
+            <% end %>
+          </section>
+        <% end %>
+      </ul>
     <% else %>
-      <p style="color: dodgerblue">Don't forget to pay rent!</p>
+      <p style="color: dodgerblue">You could probably get some new cleats or somethin!</p>
     <% end %>
-    <% house_sum = @housing.sum do |house| %>
-      <% house.cost %>
+    <% sports_sum = @sports.sum do |sports| %>
+      <% sports.cost %>
     <% end %>
-    <p style="color: maroon">Total: <%= number_to_currency(house_sum.round(2)) %></p>
+    <p style="color: maroon">Total: <%= number_to_currency(sports_sum.round(2)) %></p>
+  </h1>
 
   <h1 class="box">
-    <p style="text-decoration: underline">Car</p>
-    <% if @car != [] %>
-    <ul>
-      <% @car.each do |car| %>
-        <section id='expense-car'>
-          <% if car.category == "Car" %>
-            <li style="color: red"><%= car.date.month %>/<%= car.date.day %> - <%= car.title %>: <%= number_to_currency(car.cost) %>
-            <br>
-          <% end %>
-        </section>
-      <% end %>
-    </ul>
+    <p style="text-decoration: underline">Health & Beauty</p>
+    <% if @health_beaut != [] %>
+      <ul>
+        <% @health_beaut.each do |health_beaut| %>
+          <section id='expense-health_beaut'>
+            <% if health_beaut.category == "Health & Beauty" %>
+              <li style="color: red"><%= health_beaut.date.month %>/<%= health_beaut.date.day %> - <%= health_beaut.title %>: <%= number_to_currency(health_beaut.cost) %>
+              <br>
+            <% end %>
+          </section>
+        <% end %>
+      </ul>
     <% else %>
-      <p style="color: dodgerblue">Get out of the house and drive somewhere!</p>
+      <p style="color: dodgerblue">Go get a damn massage!</p>
     <% end %>
-    <% car_sum = @car.sum do |car| %>
-      <% car.cost %>
+    <% health_beaut_sum = @health_beaut.sum do |health_beaut| %>
+      <% health_beaut.cost %>
     <% end %>
-    <p style="color: maroon">Total: <%= number_to_currency(car_sum.round(2)) %></p>
+    <p style="color: maroon">Total: <%= number_to_currency(health_beaut_sum.round(2)) %></p>
+  </h1>
 
   <h1 class="box">
-    <p style="text-decoration: underline">Other</p>
-    <% if @other != [] %>
+    <p style="text-decoration: underline">Gifts</p>
+    <% if @gifts != [] %>
+      <ul>
+        <% @gifts.each do |gifts| %>
+          <section id='expense-gifts'>
+            <% if gifts.category == "Gifts" %>
+              <li style="color: red"><%= gifts.date.month %>/<%= gifts.date.day %> - <%= gifts.title %>: <%= number_to_currency(gifts.cost) %>
+              <br>
+            <% end %>
+          </section>
+        <% end %>
+      </ul>
+    <% else %>
+      <p style="color: dodgerblue">Buy something for someone else you selfish ass!</p>
+    <% end %>
+    <% gifts_sum = @gifts.sum do |gifts| %>
+      <% gifts.cost %>
+    <% end %>
+    <p style="color: maroon">Total: <%= number_to_currency(gifts_sum.round(2)) %></p>
+  </h1>
+
+  <h1 class="box">
+    <p style="text-decoration: underline">Other T</p>
+    <% if @other_t != [] %>
     <ul>
-      <% @other.each do |other| %>
-        <section id='expense-other'>
-          <% if other.category == "Other" %>
-            <li style="color: red"><%= other.date.month %>/<%= other.date.day %> - <%= other.title %>: <%= number_to_currency(other.cost) %>
+      <% @other_t.each do |other_t| %>
+        <section id='expense-other_t'>
+          <% if other_t.category == "Other T" %>
+            <li style="color: red"><%= other_t.date.month %>/<%= other_t.date.day %> - <%= other_t.title %>: <%= number_to_currency(other_t.cost) %>
             <br>
           <% end %>
         </section>
@@ -238,10 +416,33 @@ header {
     <% else %>
       <p style="color: dodgerblue">Only the essentials this month, I see...</p>
     <% end %>
-    <% other_sum = @other.sum do |other| %>
-      <% other.cost %>
+    <% other_t_sum = @other_t.sum do |other_t| %>
+      <% other_t.cost %>
     <% end %>
-    <p style="color: maroon">Total: <%= number_to_currency(other_sum.round(2)) %></p>
+    <p style="color: maroon">Total: <%= number_to_currency(other_t_sum.round(2)) %></p>
+  </h1>
+
+  <h1 class="box">
+    <p style="text-decoration: underline">Other H</p>
+    <% if @other_h != [] %>
+    <ul>
+      <% @other_h.each do |other_h| %>
+        <section id='expense-other_h'>
+          <% if other_h.category == "Other H" %>
+            <li style="color: red"><%= other_h.date.month %>/<%= other_h.date.day %> - <%= other_h.title %>: <%= number_to_currency(other_h.cost) %>
+            <br>
+          <% end %>
+        </section>
+      <% end %>
+    </ul>
+    <% else %>
+      <p style="color: dodgerblue">Only the essentials this month, I see...</p>
+    <% end %>
+    <% other_h_sum = @other_h.sum do |other_h| %>
+      <% other_h.cost %>
+    <% end %>
+    <p style="color: maroon">Total: <%= number_to_currency(other_h_sum.round(2)) %></p>
+  </h1>
 
   <h1 class="box">
     <p style="text-decoration: underline">Income</p>
@@ -264,7 +465,7 @@ header {
     <% end %>
     <p style="color: lawngreen">Total: <%= number_to_currency(income_sum.round(2)) %></p>
 </div>
-<% total_expenses = food_sum + ent_sum + car_sum + house_sum + other_sum  %>
+<% total_expenses = groceries_sum + eat_out_sum + housing_sum + subscriptions_sum + loan_sum + car_sum + phone_sum + larry_sum + ent_sum + sports_sum + health_beaut_sum + gifts_sum + other_t_sum + other_h_sum  %>
 <% net_savings = income_sum - total_expenses %>
 <div class="flex-container_two">
   <h1 class="box2">

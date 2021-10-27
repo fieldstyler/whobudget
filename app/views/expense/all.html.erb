@@ -87,7 +87,10 @@ header {
 <div class="flex-container" style="font-size:20px">
   <ul>
     <% @expenses.each do |exp| %>
-    <li class="box"><%= exp.date %> - <%= exp.title %>: <%= number_to_currency(exp.cost) %> <p style="float: center">category: <%= exp.category %></p></li>
+    <li class="box"><%= exp.date %> - <%= exp.title %>: <%= number_to_currency(exp.cost) %> <p style="float: center">category: <%= exp.category %></p>
+      <button type="button" style="float: right; background-color: #336600"><%= button_to 'X', "/expense/#{exp.id}/delete", method: :destroy, data: {confirm: "Are you sure you wanna delete #{exp.title}?"} %></button>
+      <button type="button" style="float: right; background-color: lightseagreen"><%= button_to 'Edit', "/expense/#{exp.id}/edit", method: :get %></button></li>
+    <br>
     <% end %>
   </ul>
 </div>
