@@ -40,20 +40,44 @@ header {
     <%= radio_button_tag(:category, "Income") unless @expense.category == "Income"%>
     <%= label_tag "Income" unless @expense.category == "Income"%>
 
-    <%= radio_button_tag(:category, "Food") unless @expense.category == "Food"%>
-    <%= label_tag "Food" unless @expense.category == "Food"%>
+    <%= radio_button_tag(:category, "Monthly Payments") unless @expense.category == "Monthly Payments"%>
+    <%= label_tag "Monthly Payments" unless @expense.category == "Monthly Payments"%>
 
-    <%= radio_button_tag(:category, "Entertainment") unless @expense.category == "Entertainment"%>
-    <%= label_tag "Entertainment" unless @expense.category == "Entertainment"%>
+    <%= radio_button_tag(:category, "Groceries") unless @expense.category == "Groceries"%>
+    <%= label_tag "Groceries" unless @expense.category == "Groceries"%>
+
+    <%= radio_button_tag(:category, "Eat Out") unless @expense.category == "Eat Out"%>
+    <%= label_tag "Eat Out" unless @expense.category == "Eat Out"%>
 
     <%= radio_button_tag(:category, "Housing") unless @expense.category == "Housing"%>
     <%= label_tag "Housing" unless @expense.category == "Housing"%>
 
+    <%= radio_button_tag(:category, "Subscriptions") unless @expense.category == "Subscriptions"%>
+    <%= label_tag "Subscriptions" unless @expense.category == "Subscriptions"%>
+
     <%= radio_button_tag(:category, "Car") unless @expense.category == "Car"%>
     <%= label_tag "Car" unless @expense.category == "Car"%>
 
-    <%= radio_button_tag(:category, "Other") unless @expense.category == "Other"%>
-    <%= label_tag "Other" unless @expense.category == "Other"%>
+    <%= radio_button_tag(:category, "Larry") unless @expense.category == "Larry"%>
+    <%= label_tag "Larry" unless @expense.category == "Larry"%>
+
+    <%= radio_button_tag(:category, "Entertainment") unless @expense.category == "Entertainment"%>
+    <%= label_tag "Entertainment" unless @expense.category == "Entertainment"%>
+
+    <%= radio_button_tag(:category, "Sports") unless @expense.category == "Sports"%>
+    <%= label_tag "Sports" unless @expense.category == "Sports"%>
+
+    <%= radio_button_tag(:category, "Health & Beauty") unless @expense.category == "Health & Beauty"%>
+    <%= label_tag "Health & Beauty" unless @expense.category == "Health & Beauty"%>
+
+    <%= radio_button_tag(:category, "Gifts") unless @expense.category == "Gifts"%>
+    <%= label_tag "Gifts" unless @expense.category == "Gifts"%>
+
+    <%= radio_button_tag(:category, "Other T") unless @expense.category == "Other T"%>
+    <%= label_tag "Other T" unless @expense.category == "Other T"%>
+
+    <%= radio_button_tag(:category, "Other H") unless @expense.category == "Other H"%>
+    <%= label_tag "Other H" unless @expense.category == "Other H"%>
     <br>
     <br>
     <%= submit_tag 'Edit This Expense' %>
