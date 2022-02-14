@@ -80,6 +80,12 @@ class Savings < ApplicationRecord
     Expense.where(category: category).where(date: date..end_of_month).order("date DESC")
   end
 
+  def self.monthly_payment_expense_breakdown(month, year)
+    date = Date.new(year.to_i, month.to_i)
+    end_of_month = date.end_of_month
+    Expense.where("category = ? OR category = ? OR category = ?", "Monthly Payments", "Phone", "Loans").where(date: date..end_of_month).order("date DESC")
+  end
+
   def restore_funds(amount)
     amount = self.amount + amount
     Savings.find(self.id).update(amount: amount)

@@ -99,9 +99,19 @@ header {
           <input type="submit" style="background-color: #0f5294; color: #66FF99" value="Next">
         </form>
       </button>
+      <button class="button" style="line-height: 25px; float: right">
+        <form class="button_to" action="/expense/new" method="get">
+          <input type="submit" style="background-color: lightgreen; color: green" value="Add Expense">
+        </form>
+      </button>
       <button class="button" style="line-height: 30px; float: left; position: relative">
         <form class="button_to" action="/expense/show/<%= @date.month - 1 %>/<%= @date.year %>" method="get">
           <input type="submit" style="background-color: #0f5294; color: #66FF99" value="Previous">
+        </form>
+      </button>
+      <button class="button" style="line-height: 25px; float: left">
+        <form class="button_to" action="/expense/all/index" method="get">
+          <input type="submit" style="background-color: lightgreen; color: green" value="View All Expenses">
         </form>
       </button>
     </div>
@@ -112,25 +122,45 @@ header {
           <input type="submit" style="background-color: #0f5294; color: #66FF99" value="Next">
         </form>
       </button>
+      <button class="button" style="line-height: 25px; float: right">
+        <form class="button_to" action="/expense/new" method="get">
+          <input type="submit" style="background-color: lightgreen; color: green" value="Add Expense">
+        </form>
+      </button>
       <button class="button" style="line-height: 30px; float: left; position: relative">
         <form class="button_to" action="/expense/show/<%= @date.month - 1 %>/<%= @date.year %>" method="get">
           <input type="submit" style="background-color: #0f5294; color: #66FF99" value="Previous">
         </form>
       </button>
+      <button class="button" style="line-height: 25px; float: left">
+        <form class="button_to" action="/expense/all/index" method="get">
+          <input type="submit" style="background-color: lightgreen; color: green" value="View All Expenses">
+        </form>
+      </button>
     </div>
   <% elsif @date.month == 1 %>
-  <div class="">
-    <button class="button" style="line-height: 30px; float: right; position: relative">
-      <form class="button_to" action="/expense/show/<%= @date.month + 1 %>/<%= @date.year %>" method="get">
-        <input type="submit" style="background-color: #0f5294; color: #66FF99" value="Next">
-      </form>
-    </button>
-    <button class="button" style="line-height: 30px; float: left; position: relative">
-      <form class="button_to" action="/expense/show/12/<%= @date.year - 1%>" method="get">
-        <input type="submit" style="background-color: #0f5294; color: #66FF99" value="Previous">
-      </form>
-    </button>
-  </div>
+    <div class="">
+      <button class="button" style="line-height: 30px; float: right; position: relative">
+        <form class="button_to" action="/expense/show/<%= @date.month + 1 %>/<%= @date.year %>" method="get">
+          <input type="submit" style="background-color: #0f5294; color: #66FF99" value="Next">
+        </form>
+      </button>
+      <button class="button" style="line-height: 25px; float: right">
+        <form class="button_to" action="/expense/new" method="get">
+          <input type="submit" style="background-color: lightgreen; color: green" value="Add Expense">
+        </form>
+      </button>
+      <button class="button" style="line-height: 30px; float: left; position: relative">
+        <form class="button_to" action="/expense/show/12/<%= @date.year - 1%>" method="get">
+          <input type="submit" style="background-color: #0f5294; color: #66FF99" value="Previous">
+        </form>
+      </button>
+      <button class="button" style="line-height: 25px; float: left">
+        <form class="button_to" action="/expense/all/index" method="get">
+          <input type="submit" style="background-color: lightgreen; color: green" value="View All Expenses">
+        </form>
+      </button>
+    </div>
   <% end %>
   <%= @date.strftime("%B") %> <%= @date.year %> Expense Breakdown
 </header>
@@ -139,6 +169,9 @@ header {
   <h1 class="box">
     <p style="text-decoration: underline">Groceries</p>
   <% if @groceries != [] %>
+    <% if @groceries_check %>
+      <p style="color: black"> You may have duplicate entries </p>
+    <% end %>
     <ul>
       <% @groceries.each do |grocery| %>
         <section id='expense-grocery'>
@@ -156,11 +189,20 @@ header {
     <% grocery.cost %>
   <% end %>
   <p style="color: maroon">Total: <%= number_to_currency(groceries_sum.round(2)) %></p>
+  <p style="color: DarkCyan">Allowance: $500</p>
+  <% if (500 - groceries_sum.round(2)) > 0 %>
+    <p style="color: aquamarine">Remaining This Month: <%= number_to_currency(500 - groceries_sum.round(2)) %> </p>
+  <% else %>
+    <p style="color: red">Amount Over Allowance: <%= number_to_currency(groceries_sum.round(2) - 500) %> </p>
+  <% end %>
   </h1>
 
   <h1 class="box">
     <p style="text-decoration: underline">Eat Out</p>
   <% if @eat_out != [] %>
+    <% if @eat_out_check %>
+      <p style="color: black"> You may have duplicate entries </p>
+    <% end %>
     <ul>
       <% @eat_out.each do |eat_out| %>
         <section id='expense-eat_out'>
@@ -178,11 +220,20 @@ header {
     <% eat_out.cost %>
   <% end %>
   <p style="color: maroon">Total: <%= number_to_currency(eat_out_sum.round(2)) %></p>
+  <p style="color: DarkCyan">Allowance: $250</p>
+  <% if (250 - eat_out_sum.round(2)) > 0 %>
+    <p style="color: aquamarine">Remaining This Month: <%= number_to_currency(250 - eat_out_sum.round(2)) %> </p>
+  <% else %>
+    <p style="color: red">Amount Over Allowance: <%= number_to_currency(eat_out_sum.round(2) - 250) %> </p>
+  <% end %>
   </h1>
 
   <h1 class="box">
     <p style="text-decoration: underline">Housing</p>
     <% if @housing != [] %>
+      <% if @housing_check %>
+        <p style="color: black"> You may have duplicate entries </p>
+      <% end %>
       <ul>
         <% @housing.each do |housing| %>
           <section id='expense-housing'>
@@ -205,6 +256,9 @@ header {
   <h1 class="box">
     <p style="text-decoration: underline">Subscriptions</p>
     <% if @subscriptions != [] %>
+      <% if @subscriptions_check %>
+        <p style="color: black"> You may have duplicate entries </p>
+      <% end %>
       <ul>
         <% @subscriptions.each do |subscription| %>
           <section id='expense-subscription'>
@@ -225,30 +279,34 @@ header {
   </h1>
 
   <h1 class="box">
-    <p style="text-decoration: underline">Loans</p>
-    <% if @loans != [] %>
+    <p style="text-decoration: underline">Monthly Payments</p>
+    <% if @monthly_payments != [] %>
+      <% if @monthly_payments_check %>
+        <p style="color: black"> You may have duplicate entries </p>
+      <% end %>
     <ul>
-      <% @loans.each do |loan| %>
-      <section id='expense-loan'>
-        <% if loan.category == "Loans" %>
-          <li style="color: red"><%= loan.date.month %>/<%= loan.date.day %> - <%= loan.title %>: <%= number_to_currency(loan.cost) %>
-          <br>
-        <% end %>
+      <% @monthly_payments.each do |payment| %>
+      <section id='expense-payment'>
+        <li style="color: red"><%= payment.date.month %>/<%= payment.date.day %> - <%= payment.title %>: <%= number_to_currency(payment.cost) %>
+        <br>
       </section>
       <% end %>
     </ul>
     <% else %>
       <p style="color: dodgerblue">These aren't optional!</p>
     <% end %>
-    <% loan_sum = @loans.sum do |loan| %>
-      <% loan.cost %>
+    <% payment_sum = @monthly_payments.sum do |payment| %>
+      <% payment.cost %>
     <% end %>
-    <p style="color: maroon">Total: <%= number_to_currency(loan_sum.round(2)) %></p>
+    <p style="color: maroon">Total: <%= number_to_currency(payment_sum.round(2)) %></p>
   </h1>
 
   <h1 class="box">
     <p style="text-decoration: underline">Car</p>
     <% if @car != [] %>
+      <% if @car_check %>
+        <p style="color: black"> You may have duplicate entries </p>
+      <% end %>
       <ul>
       <% @car.each do |car| %>
       <section id='expense-car'>
@@ -269,30 +327,11 @@ header {
   </h1>
 
   <h1 class="box">
-    <p style="text-decoration: underline">Phone</p>
-    <% if @phone != [] %>
-      <ul>
-      <% @phone.each do |phone| %>
-      <section id='expense-phone'>
-        <% if phone.category == "Phone" %>
-          <li style="color: red"><%= phone.date.month %>/<%= phone.date.day %> - <%= phone.title %>: <%= number_to_currency(phone.cost) %>
-          <br>
-        <% end %>
-      </section>
-      <% end %>
-    </ul>
-    <% else %>
-      <p style="color: dodgerblue">Your phone is already in your hand, pay the bill!</p>
-    <% end %>
-    <% phone_sum = @phone.sum do |phone| %>
-      <% phone.cost %>
-    <% end %>
-    <p style="color: maroon">Total: <%= number_to_currency(phone_sum.round(2)) %></p>
-  </h1>
-
-  <h1 class="box">
     <p style="text-decoration: underline">Larry</p>
     <% if @larry != [] %>
+      <% if @larry_check %>
+        <p style="color: black"> You may have duplicate entries </p>
+      <% end %>
       <ul>
       <% @larry.each do |larry| %>
       <section id='expense-larry'>
@@ -310,11 +349,21 @@ header {
       <% larry.cost %>
     <% end %>
     <p style="color: maroon">Total: <%= number_to_currency(larry_sum.round(2)) %></p>
+    <p style="color: DarkCyan">Allowance: $120</p>
+    <% if (120 - larry_sum.round(2)) > 0 %>
+      <p style="color: aquamarine">Remaining This Month: <%= number_to_currency(120 - larry_sum.round(2)) %> </p>
+    <% else %>
+      <p style="color: red">Amount Over Allowance: <%= number_to_currency(larry_sum.round(2) - 120) %> </p>
+      <p style="color: OrangeRed">I know you love the bear, but that's enough for this month! </p>
+    <% end %>
   </h1>
 
   <h1 class="box">
     <p style="text-decoration: underline">Entertainment</p>
     <% if @entertainment != [] %>
+      <% if @entertainment_check %>
+        <p style="color: black"> You may have duplicate entries </p>
+      <% end %>
       <ul>
         <% @entertainment.each do |entertainment| %>
           <section id='expense-entertainment'>
@@ -332,11 +381,20 @@ header {
       <% entertainment.cost %>
     <% end %>
     <p style="color: maroon">Total: <%= number_to_currency(ent_sum.round(2)) %></p>
+    <p style="color: DarkCyan">Allowance: $250</p>
+    <% if (250 - ent_sum.round(2)) > 0 %>
+      <p style="color: aquamarine">Remaining This Month: <%= number_to_currency(250 - ent_sum.round(2)) %> </p>
+    <% else %>
+      <p style="color: red">Amount Over Allowance: <%= number_to_currency(ent_sum.round(2) - 250) %> </p>
+    <% end %>
   </h1>
 
   <h1 class="box">
     <p style="text-decoration: underline">Sports</p>
     <% if @sports != [] %>
+      <% if @sports_check %>
+        <p style="color: black"> You may have duplicate entries </p>
+      <% end %>
       <ul>
         <% @sports.each do |sports| %>
           <section id='expense-sports'>
@@ -354,11 +412,20 @@ header {
       <% sports.cost %>
     <% end %>
     <p style="color: maroon">Total: <%= number_to_currency(sports_sum.round(2)) %></p>
+    <p style="color: DarkCyan">Allowance: $80</p>
+    <% if (80 - sports_sum.round(2)) > 0 %>
+      <p style="color: aquamarine">Remaining This Month: <%= number_to_currency(80 - sports_sum.round(2)) %> </p>
+    <% else %>
+      <p style="color: red">Amount Over Allowance: <%= number_to_currency(sports_sum.round(2) - 80) %> </p>
+    <% end %>
   </h1>
 
   <h1 class="box">
     <p style="text-decoration: underline">Health & Beauty</p>
     <% if @health_beaut != [] %>
+      <% if @health_beaut_check %>
+        <p style="color: black"> You may have duplicate entries </p>
+      <% end %>
       <ul>
         <% @health_beaut.each do |health_beaut| %>
           <section id='expense-health_beaut'>
@@ -376,11 +443,20 @@ header {
       <% health_beaut.cost %>
     <% end %>
     <p style="color: maroon">Total: <%= number_to_currency(health_beaut_sum.round(2)) %></p>
+    <p style="color: DarkCyan">Allowance: $200</p>
+    <% if (200 - health_beaut_sum.round(2)) > 0 %>
+      <p style="color: aquamarine">Remaining This Month: <%= number_to_currency(200 - health_beaut_sum.round(2)) %> </p>
+    <% else %>
+      <p style="color: red">Amount Over Allowance: <%= number_to_currency(health_beaut_sum.round(2) - 200) %> </p>
+    <% end %>
   </h1>
 
   <h1 class="box">
     <p style="text-decoration: underline">Gifts</p>
     <% if @gifts != [] %>
+      <% if @gifts_check %>
+        <p style="color: black"> You may have duplicate entries </p>
+      <% end %>
       <ul>
         <% @gifts.each do |gifts| %>
           <section id='expense-gifts'>
@@ -398,11 +474,20 @@ header {
       <% gifts.cost %>
     <% end %>
     <p style="color: maroon">Total: <%= number_to_currency(gifts_sum.round(2)) %></p>
+    <p style="color: DarkCyan">Allowance: $75</p>
+    <% if (75 - gifts_sum.round(2)) > 0 %>
+      <p style="color: aquamarine">Remaining This Month: <%= number_to_currency(75 - gifts_sum.round(2)) %> </p>
+    <% else %>
+      <p style="color: red">Amount Over Allowance: <%= number_to_currency(gifts_sum.round(2) - 75) %> </p>
+    <% end %>
   </h1>
 
   <h1 class="box">
     <p style="text-decoration: underline">Other T</p>
     <% if @other_t != [] %>
+      <% if @other_t_check %>
+        <p style="color: black"> You may have duplicate entries </p>
+      <% end %>
     <ul>
       <% @other_t.each do |other_t| %>
         <section id='expense-other_t'>
@@ -425,6 +510,9 @@ header {
   <h1 class="box">
     <p style="text-decoration: underline">Other H</p>
     <% if @other_h != [] %>
+      <% if @other_h_check %>
+        <p style="color: black"> You may have duplicate entries </p>
+      <% end %>
     <ul>
       <% @other_h.each do |other_h| %>
         <section id='expense-other_h'>
@@ -447,6 +535,9 @@ header {
   <h1 class="box">
     <p style="text-decoration: underline">Income</p>
     <% if @income != [] %>
+      <% if @income_check %>
+        <p style="color: black"> You may have duplicate entries </p>
+      <% end %>
     <ul>
       <% @income.each do |income| %>
         <section id='expense-income'>
@@ -465,7 +556,7 @@ header {
     <% end %>
     <p style="color: lawngreen">Total: <%= number_to_currency(income_sum.round(2)) %></p>
 </div>
-<% total_expenses = groceries_sum + eat_out_sum + housing_sum + subscriptions_sum + loan_sum + car_sum + phone_sum + larry_sum + ent_sum + sports_sum + health_beaut_sum + gifts_sum + other_t_sum + other_h_sum  %>
+<% total_expenses = groceries_sum + payment_sum + eat_out_sum + housing_sum + subscriptions_sum + car_sum + larry_sum + ent_sum + sports_sum + health_beaut_sum + gifts_sum + other_t_sum + other_h_sum  %>
 <% net_savings = income_sum - total_expenses %>
 <div class="flex-container_two">
   <h1 class="box2">

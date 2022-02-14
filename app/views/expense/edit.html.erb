@@ -40,6 +40,9 @@ header {
     <%= radio_button_tag(:category, "Income") unless @expense.category == "Income"%>
     <%= label_tag "Income" unless @expense.category == "Income"%>
 
+    <%= radio_button_tag(:category, "Monthly Payments") unless @expense.category == "Monthly Payments"%>
+    <%= label_tag "Monthly Payments" unless @expense.category == "Monthly Payments"%>
+
     <%= radio_button_tag(:category, "Groceries") unless @expense.category == "Groceries"%>
     <%= label_tag "Groceries" unless @expense.category == "Groceries"%>
 
@@ -52,15 +55,9 @@ header {
     <%= radio_button_tag(:category, "Subscriptions") unless @expense.category == "Subscriptions"%>
     <%= label_tag "Subscriptions" unless @expense.category == "Subscriptions"%>
 
-    <%= radio_button_tag(:category, "Loans") unless @expense.category == "Loans"%>
-    <%= label_tag "Loans" unless @expense.category == "Loans"%>
-
     <%= radio_button_tag(:category, "Car") unless @expense.category == "Car"%>
     <%= label_tag "Car" unless @expense.category == "Car"%>
 
-    <%= radio_button_tag(:category, "Phone") unless @expense.category == "Phone"%>
-    <%= label_tag "Phone" unless @expense.category == "Phone"%>
-    
     <%= radio_button_tag(:category, "Larry") unless @expense.category == "Larry"%>
     <%= label_tag "Larry" unless @expense.category == "Larry"%>
 
